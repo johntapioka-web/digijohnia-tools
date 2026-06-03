@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>DIAS — Outils IA pour vos clients</title>
+<meta name="description" content="Accédez aux outils interactifs créés par Digijohn AI Solutions pour votre entreprise.">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --navy:#1B2B4B;
+  --gold:#C9A84C;
+  --gold-light:#e8c97a;
+  --white:#ffffff;
+  --light:#F4F6FA;
+  --text:#1a1a2e;
+  --sub:#5a6278;
+  --border:rgba(27,43,75,.12);
+  --card-shadow:0 2px 16px rgba(27,43,75,.10);
+  --radius:12px;
+}
+body{
+  font-family:'Inter',-apple-system,BlinkMacSystemFont,sans-serif;
+  background:var(--light);color:var(--text);
+  min-height:100vh;
+}
+header{
+  background:var(--navy);
+  padding:0 2rem;
+  position:sticky;top:0;z-index:100;
+  box-shadow:0 2px 12px rgba(0,0,0,.25);
+}
+.header-inner{
+  max-width:1000px;margin:0 auto;
+  display:flex;align-items:center;justify-content:space-between;
+  height:64px;
+}
+.logo{display:flex;align-items:center;gap:10px;text-decoration:none}
+.logo-mark{
+  width:36px;height:36px;border-radius:8px;
+  background:var(--gold);
+  display:flex;align-items:center;justify-content:center;
+  font-size:15px;font-weight:700;color:var(--navy);letter-spacing:-.5px;
+}
+.logo-text{color:var(--white)}
+.logo-dias{font-size:15px;font-weight:600;letter-spacing:.5px}
+.logo-sub{font-size:10px;opacity:.6;letter-spacing:1px;text-transform:uppercase}
+.header-contact{
+  font-size:12px;color:rgba(255,255,255,.6);
+  text-decoration:none;
+  border:1px solid rgba(255,255,255,.2);
+  padding:6px 14px;border-radius:20px;
+  transition:all .2s;
+}
+.header-contact:hover{background:rgba(255,255,255,.1);color:var(--white);}
+.hero{
+  background:linear-gradient(135deg, var(--navy) 0%, #2a4070 100%);
+  padding:3.5rem 2rem 3rem;
+  text-align:center;
+  position:relative;overflow:hidden;
+}
+.hero::after{
+  content:'';position:absolute;
+  bottom:-60px;left:-5%;right:-5%;
+  height:80px;background:var(--light);
+  border-radius:50% 50% 0 0 / 100% 100% 0 0;
+}
+.hero-label{
+  display:inline-flex;align-items:center;gap:6px;
+  background:rgba(201,168,76,.15);
+  border:1px solid rgba(201,168,76,.3);
+  color:var(--gold-light);
+  font-size:11px;font-weight:500;letter-spacing:1.5px;text-transform:uppercase;
+  padding:5px 14px;border-radius:20px;margin-bottom:1rem;
+}
+.hero-label::before{content:'';width:5px;height:5px;border-radius:50%;background:var(--gold-light)}
+h1{font-size:clamp(24px,5vw,36px);font-weight:600;color:var(--white);margin-bottom:.75rem;letter-spacing:-.5px;}
+.hero-sub{font-size:15px;color:rgba(255,255,255,.65);max-width:480px;margin:0 auto;line-height:1.6;}
+.hero-sub strong{color:rgba(255,255,255,.9)}
+main{max-width:1000px;margin:0 auto;padding:3rem 1.5rem 5rem}
+.section-label{
+  font-size:11px;letter-spacing:2px;text-transform:uppercase;
+  color:var(--sub);font-weight:500;
+  margin-bottom:1.25rem;
+  display:flex;align-items:center;gap:10px;
+}
+.section-label::after{content:'';flex:1;height:1px;background:var(--border)}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:1.25rem;margin-bottom:3rem;}
+.card{
+  background:var(--white);border-radius:var(--radius);
+  border:1px solid var(--border);
+  box-shadow:var(--card-shadow);
+  text-decoration:none;color:inherit;
+  display:flex;flex-direction:column;
+  transition:transform .2s,box-shadow .2s;
+  overflow:hidden;
+}
+.card:hover{transform:translateY(-4px);box-shadow:0 8px 32px rgba(27,43,75,.18);}
+.card-thumb{height:140px;background:var(--navy);position:relative;overflow:hidden;}
+.card-thumb img{width:100%;height:100%;object-fit:cover;opacity:.85}
+.card-thumb-placeholder{height:100%;display:flex;align-items:center;justify-content:center;font-size:36px;}
+.card-badge{
+  position:absolute;top:10px;right:10px;
+  background:rgba(201,168,76,.9);
+  color:var(--navy);font-size:9px;font-weight:600;
+  letter-spacing:1px;text-transform:uppercase;
+  padding:3px 8px;border-radius:4px;
+}
+.card-body{padding:1.25rem;flex:1;display:flex;flex-direction:column}
+.card-title{font-size:16px;font-weight:600;margin-bottom:.5rem;color:var(--text);}
+.card-desc{font-size:13px;color:var(--sub);line-height:1.55;flex:1;margin-bottom:1rem;}
+.card-cta{
+  display:inline-flex;align-items:center;gap:6px;
+  font-size:13px;font-weight:500;color:var(--navy);
+  border:1.5px solid var(--navy);
+  padding:8px 16px;border-radius:8px;
+  transition:all .18s;align-self:flex-start;
+}
+.card:hover .card-cta{background:var(--navy);color:var(--white);}
+.card-cta svg{width:14px;height:14px}
+.card.soon{opacity:.55;pointer-events:none}
+.card.soon .card-badge{background:rgba(100,100,120,.7);color:white}
+.contact-banner{
+  background:var(--navy);border-radius:var(--radius);
+  padding:2rem 2.5rem;
+  display:flex;align-items:center;justify-content:space-between;
+  gap:1.5rem;flex-wrap:wrap;
+}
+.contact-banner h3{font-size:18px;font-weight:600;color:var(--white);margin-bottom:.35rem;}
+.contact-banner p{font-size:13px;color:rgba(255,255,255,.6);max-width:380px}
+.contact-banner a{
+  display:inline-flex;align-items:center;gap:8px;
+  background:var(--gold);color:var(--navy);
+  font-size:13px;font-weight:600;
+  padding:11px 22px;border-radius:8px;
+  text-decoration:none;white-space:nowrap;
+  transition:background .2s;
+}
+.contact-banner a:hover{background:var(--gold-light)}
+footer{
+  background:var(--navy);color:rgba(255,255,255,.45);
+  text-align:center;padding:1.5rem;
+  font-size:11px;letter-spacing:.5px;
+}
+footer strong{color:var(--gold);letter-spacing:1px}
+@media(max-width:600px){
+  .header-contact{display:none}
+  .hero{padding:2.5rem 1.25rem 2.5rem}
+  .contact-banner{flex-direction:column;text-align:center}
+  .contact-banner a{width:100%;justify-content:center}
+}
+</style>
+</head>
+<body>
+<header>
+  <div class="header-inner">
+    <a href="/" class="logo">
+      <div class="logo-mark">D</div>
+      <div class="logo-text">
+        <div class="logo-dias">DIGIJOHN IA SOLUTIONS</div>
+        <div class="logo-sub">Outils digitaux clients</div>
+      </div>
+    </a>
+    <a href="mailto:johntapioka@gmail.com" class="header-contact">Contacter DIAS</a>
+  </div>
+</header>
+<div class="hero">
+  <div class="hero-label">Vos outils personnalisés</div>
+  <h1>Bienvenue sur votre espace DIAS</h1>
+  <p class="hero-sub">
+    Tous vos outils IA interactifs au même endroit.<br>
+    <strong>Cliquez sur un outil pour l'ouvrir</strong> — aucun téléchargement requis.
+  </p>
+</div>
+<main>
+  <div class="section-label">Outils disponibles</div>
+  <div class="grid" id="tools-grid">
+    <a href="/calculateur-baobab" class="card">
+      <div class="card-thumb">
+        <img src="https://www.gite-sainte-anne-guadeloupe.com/wp-content/uploads/2022/12/espace-piscine-6.jpg" alt="Aventure Baobab" onerror="this.style.display='none'">
+        <span class="card-badge">Hôtellerie</span>
+      </div>
+      <div class="card-body">
+        <div class="card-title">Calculateur de séjour</div>
+        <div class="card-desc">Simulez le tarif de votre séjour aux Gîtes Baobab — 9 formules, 3 saisons, options personnalisables.</div>
+        <span class="card-cta">Ouvrir l'outil <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg></span>
+      </div>
+    </a>
+  </div>
+  <div class="contact-banner">
+    <div>
+      <h3>Un outil manquant ou une question ?</h3>
+      <p>Contactez DIAS — nous créons des outils IA sur mesure pour votre activité.</p>
+    </div>
+    <a href="mailto:johntapioka@gmail.com">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,12 2,6"/></svg>
+      Contacter DIAS
+    </a>
+  </div>
+</main>
+<footer>
+  <strong>DIGIJOHN IA SOLUTIONS</strong> · SIRET 524 924 198 00038 · TVA non applicable Art. 293B<br>
+  Solutions IA sur mesure pour PME et indépendants francophones
+</footer>
+</body>
+</html>
