@@ -10,56 +10,143 @@
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
 <style>
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
-:root{--bv:#1B4332;--bvl:#2d6b52;--bo:#C9963A;--cream:#F7F3EA;--bnoir:#0D1B0F;--tp:#1a1a0f;--ts:#6b6a56;--tt:#9a9480;--bgp:#ffffff;--bgs:#f5f1e8;--bgc:#F7F3EA;--bdt:rgba(0,0,0,.09);--bds:rgba(0,0,0,.18);--bdp:rgba(0,0,0,.3);--rm:8px;--rl:14px}
-@media(prefers-color-scheme:dark){:root{--tp:#f0ede4;--ts:#9a9480;--tt:#6b6b5a;--bgp:#181810;--bgs:#22221a;--bgc:#1e1e15;--bdt:rgba(255,255,255,.09);--bds:rgba(255,255,255,.18);--bdp:rgba(255,255,255,.3)}}
-body{font-family:'Inter',-apple-system,BlinkMacSystemFont,sans-serif;background:var(--bgp);color:var(--tp);min-height:100vh;display:flex;justify-content:center;padding:2rem 1rem 4rem}
+
+:root{
+  --bv:#1B4332;--bvl:#2d6b52;--bo:#C9963A;--cream:#F7F3EA;--bnoir:#0D1B0F;
+  --tp:#1a1a0f;--ts:#6b6a56;--tt:#9a9480;
+  --bgp:#ffffff;--bgs:#f5f1e8;--bgc:#F7F3EA;
+  --bdt:rgba(0,0,0,.09);--bds:rgba(0,0,0,.18);--bdp:rgba(0,0,0,.3);
+  --rm:8px;--rl:14px
+}
+@media(prefers-color-scheme:dark){
+  :root{
+    --tp:#f0ede4;--ts:#9a9480;--tt:#6b6b5a;
+    --bgp:#181810;--bgs:#22221a;--bgc:#1e1e15;
+    --bdt:rgba(255,255,255,.09);--bds:rgba(255,255,255,.18);--bdp:rgba(255,255,255,.3)
+  }
+}
+
+body{
+  font-family:'Inter',-apple-system,BlinkMacSystemFont,sans-serif;
+  background:var(--bgp);color:var(--tp);
+  min-height:100vh;display:flex;justify-content:center;
+  padding:2rem 1rem 4rem
+}
 .page{width:100%;max-width:680px}
-.hero{position:relative;height:220px;background:#0d2218 url('https://www.gite-sainte-anne-guadeloupe.com/wp-content/uploads/2022/12/espace-piscine-6.jpg') center 60%/cover;border-radius:var(--rl);overflow:hidden;margin-bottom:1.75rem}
-.hero-ov{position:absolute;inset:0;background:rgba(7,22,12,.62);display:flex;flex-direction:column;align-items:center;justify-content:flex-end;padding:1.5rem;text-align:center;gap:3px}
+
+/* HERO */
+.hero{
+  position:relative;height:220px;
+  background:#0d2218 url('https://www.gite-sainte-anne-guadeloupe.com/wp-content/uploads/2022/12/espace-piscine-6.jpg') center 60%/cover;
+  border-radius:var(--rl);overflow:hidden;margin-bottom:1.75rem
+}
+.hero-ov{
+  position:absolute;inset:0;background:rgba(7,22,12,.62);
+  display:flex;flex-direction:column;align-items:center;justify-content:flex-end;
+  padding:1.5rem;text-align:center;gap:3px
+}
 .hero-rc{font-size:9px;letter-spacing:3px;text-transform:uppercase;color:rgba(201,150,58,.85);font-weight:500}
-.hero-name{font-family:'Cormorant Garamond',serif;font-size:30px;font-weight:600;color:#F7F3EA;letter-spacing:4px;text-transform:uppercase;margin:2px 0}
+.hero-name{
+  font-family:'Cormorant Garamond',serif;font-size:30px;font-weight:600;
+  color:#F7F3EA;letter-spacing:4px;text-transform:uppercase;margin:2px 0
+}
 .hero-sep{display:flex;align-items:center;gap:10px}
 .hero-line{flex:1;max-width:44px;height:1px;background:var(--bo)}
 .hero-tag{font-family:'Cormorant Garamond',serif;font-style:italic;font-size:15px;color:var(--bo)}
 .hero-calc{font-size:10px;letter-spacing:1.5px;text-transform:uppercase;color:rgba(247,243,234,.5);margin-top:2px}
-.dias-badge{display:flex;align-items:center;justify-content:center;gap:6px;font-size:10px;color:var(--tt);margin-bottom:1.5rem;padding:6px 0;border-bottom:0.5px solid var(--bdt)}
+
+/* POWERED BY DIAS */
+.dias-badge{
+  display:flex;align-items:center;justify-content:center;gap:6px;
+  font-size:10px;color:var(--tt);margin-bottom:1.5rem;
+  padding:6px 0;border-bottom:0.5px solid var(--bdt)
+}
 .dias-dot{width:5px;height:5px;border-radius:50%;background:var(--bo)}
+
+/* PROGRESS */
 .prog{display:flex;position:relative;margin-bottom:2rem;padding:0 12px}
 .prog::before{content:'';position:absolute;top:13px;left:14%;right:14%;height:1px;background:var(--bdt)}
 .sdot{flex:1;display:flex;flex-direction:column;align-items:center;gap:5px;position:relative;z-index:1}
-.sdot .d{width:27px;height:27px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:500;border:1.5px solid var(--bds);background:var(--bgp);color:var(--ts);transition:all .25s}
+.sdot .d{
+  width:27px;height:27px;border-radius:50%;display:flex;align-items:center;justify-content:center;
+  font-size:11px;font-weight:500;border:1.5px solid var(--bds);background:var(--bgp);
+  color:var(--ts);transition:all .25s
+}
 .sdot .dl{font-size:10px;color:var(--ts)}
 .sdot.active .d{background:var(--bv);border-color:var(--bv);color:white}
 .sdot.active .dl{color:var(--tp);font-weight:500}
 .sdot.done .d{background:var(--bo);border-color:var(--bo);color:white}
 .dn{display:inline}.dc{display:none;font-size:13px}
 .done .dn{display:none}.done .dc{display:inline}
+
+/* PANELS */
 .pnl{display:none}.pnl.on{display:block}
+
+/* STEP HEADERS */
 .sth{margin-bottom:1.25rem}
 .sth-t{font-family:'Cormorant Garamond',serif;font-size:24px;font-weight:600;color:var(--tp);margin:0 0 3px}
 .sth-s{font-size:12px;color:var(--ts);margin:0}
+
+/* FORMULA IMAGE CARDS */
 .fgrid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px;margin-bottom:1.5rem}
-.fc{position:relative;height:145px;border-radius:var(--rl);cursor:pointer;overflow:hidden;background:#0d2218 center/cover;border:2.5px solid transparent;transition:transform .18s,border-color .18s}
+.fc{
+  position:relative;height:145px;border-radius:var(--rl);cursor:pointer;overflow:hidden;
+  background:#0d2218 center/cover;border:2.5px solid transparent;
+  transition:transform .18s,border-color .18s
+}
 .fc:hover{transform:translateY(-3px)}
 .fc.on{border-color:var(--bo)}
 .fc-ov{position:absolute;bottom:0;left:0;right:0;padding:10px 12px;background:rgba(6,18,10,.82)}
-.fc-name{font-family:'Cormorant Garamond',serif;font-size:14px;font-weight:600;color:#f0ebe0;margin:0;line-height:1.2}
+.fc-name{
+  font-family:'Cormorant Garamond',serif;font-size:14px;font-weight:600;
+  color:#f0ebe0;margin:0;line-height:1.2
+}
 .fc-desc{font-size:9.5px;color:rgba(235,220,195,.75);margin:2px 0 0;line-height:1.3}
 .fc-from{font-size:9px;color:var(--bo);font-weight:500;margin-top:3px;text-transform:uppercase;letter-spacing:.5px}
-.fc-tick{position:absolute;top:8px;right:8px;width:22px;height:22px;border-radius:50%;background:var(--bo);display:none;align-items:center;justify-content:center;font-size:12px;color:white}
+.fc-tick{
+  position:absolute;top:8px;right:8px;width:22px;height:22px;border-radius:50%;
+  background:var(--bo);display:none;align-items:center;justify-content:center;
+  font-size:12px;color:white
+}
 .fc.on .fc-tick{display:flex}
+
+/* FORM CARD */
 .fcard{background:var(--bgc);border-radius:var(--rl);padding:1.25rem;margin-bottom:1rem}
-.flbl{display:block;font-size:10px;font-weight:500;color:var(--ts);text-transform:uppercase;letter-spacing:.6px;margin-bottom:5px}
+.flbl{
+  display:block;font-size:10px;font-weight:500;color:var(--ts);
+  text-transform:uppercase;letter-spacing:.6px;margin-bottom:5px
+}
 .dr{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:1rem}
-input[type=date]{width:100%;font-family:'Inter',sans-serif;font-size:14px;color:var(--tp);background:var(--bgp);border:1px solid var(--bds);border-radius:var(--rm);padding:9px 12px;outline:none;transition:border-color .15s}
+
+/* INPUTS */
+input[type=date]{
+  width:100%;font-family:'Inter',sans-serif;font-size:14px;color:var(--tp);
+  background:var(--bgp);border:1px solid var(--bds);border-radius:var(--rm);
+  padding:9px 12px;outline:none;transition:border-color .15s
+}
 input[type=date]:focus{border-color:var(--bv);box-shadow:0 0 0 3px rgba(27,67,50,.12)}
-input[type=range]{-webkit-appearance:none;appearance:none;width:100%;height:5px;border-radius:3px;background:var(--bds);outline:none;cursor:pointer;accent-color:var(--bv)}
-input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;width:18px;height:18px;border-radius:50%;background:var(--bv);cursor:pointer;border:2px solid white;box-shadow:0 1px 4px rgba(0,0,0,.25)}
+input[type=range]{
+  -webkit-appearance:none;appearance:none;width:100%;height:5px;
+  border-radius:3px;background:var(--bds);outline:none;cursor:pointer;
+  accent-color:var(--bv)
+}
+input[type=range]::-webkit-slider-thumb{
+  -webkit-appearance:none;width:18px;height:18px;border-radius:50%;
+  background:var(--bv);cursor:pointer;border:2px solid white;
+  box-shadow:0 1px 4px rgba(0,0,0,.25)
+}
 input[type=checkbox]{accent-color:var(--bv);cursor:pointer;width:18px;height:18px}
-.sf-pill{display:flex;align-items:center;gap:10px;padding:10px 12px;border-radius:12px;background:rgba(27,67,50,.1);border:1px solid rgba(27,67,50,.2);margin-bottom:1.25rem}
+
+/* SELECTED FORMULA PILL */
+.sf-pill{
+  display:flex;align-items:center;gap:10px;padding:10px 12px;border-radius:12px;
+  background:rgba(27,67,50,.1);border:1px solid rgba(27,67,50,.2);margin-bottom:1.25rem
+}
 .sf-thumb{width:54px;height:38px;border-radius:8px;object-fit:cover;flex-shrink:0}
 .sf-name{font-family:'Cormorant Garamond',serif;font-size:15px;font-weight:600;color:var(--bv)}
 .sf-sub{font-size:11px;color:var(--ts)}
+
+/* SEASON */
 .sea{display:flex;align-items:center;gap:10px;padding:10px 14px;border-radius:10px;margin-bottom:1rem}
 .sea.bs{background:rgba(26,107,138,.1);border:1px solid rgba(26,107,138,.2);color:#1A6B8A}
 .sea.ms{background:rgba(180,130,10,.1);border:1px solid rgba(180,130,10,.2);color:#9A6500}
@@ -67,89 +154,403 @@ input[type=checkbox]{accent-color:var(--bv);cursor:pointer;width:18px;height:18p
 .sea-ico{font-size:22px;flex-shrink:0}
 .sea-lbl{font-weight:500;font-size:13px}
 .sea-n{font-size:11px;opacity:.75;margin-top:1px}
+
+/* PERSONS */
 .ph{display:flex;justify-content:space-between;align-items:center;margin-bottom:8px}
 .ph-lbl{font-size:10px;font-weight:500;color:var(--ts);text-transform:uppercase;letter-spacing:.6px}
 .ph-num{font-family:'Cormorant Garamond',serif;font-size:44px;font-weight:600;color:var(--bv);line-height:1}
 .ph-unit{font-size:12px;color:var(--ts);font-family:'Inter',sans-serif;margin-left:3px}
-.mwarn{display:none;font-size:11px;padding:7px 11px;border-radius:8px;background:rgba(180,120,10,.1);border:1px solid rgba(180,120,10,.25);color:#9A6500;margin-top:8px;line-height:1.5}
+
+/* WARNING */
+.mwarn{
+  display:none;font-size:11px;padding:7px 11px;border-radius:8px;
+  background:rgba(180,120,10,.1);border:1px solid rgba(180,120,10,.25);
+  color:#9A6500;margin-top:8px;line-height:1.5
+}
+
+/* OPTIONS */
 .oi{display:flex;align-items:center;gap:12px;padding:12px 0;border-bottom:.5px solid var(--bdt)}
 .oi:last-child{border-bottom:none}
-.oi-ico{width:42px;height:38px;border-radius:8px;background:rgba(27,67,50,.1);display:flex;align-items:center;justify-content:center;font-size:18px;color:var(--bv);flex-shrink:0}
+.oi-ico{
+  width:42px;height:38px;border-radius:8px;
+  background:rgba(27,67,50,.1);display:flex;align-items:center;justify-content:center;
+  font-size:18px;color:var(--bv);flex-shrink:0
+}
 .oi-name{font-size:13px;font-weight:500;color:var(--tp)}
 .oi-desc{font-size:11px;color:var(--ts);margin-top:1px}
 .oi-px{font-size:11px;color:var(--bo);font-weight:500;margin-top:2px}
-.res-hero{position:relative;height:80px;border-radius:var(--rl);overflow:hidden;background:#0d2218 url('https://www.gite-sainte-anne-guadeloupe.com/wp-content/uploads/2022/12/espace-piscine-5.jpg') center 40%/cover;margin-bottom:1.25rem}
+
+/* RESULTS */
+.res-hero{
+  position:relative;height:80px;border-radius:var(--rl);overflow:hidden;
+  background:#0d2218 url('https://www.gite-sainte-anne-guadeloupe.com/wp-content/uploads/2022/12/espace-piscine-5.jpg') center 40%/cover;
+  margin-bottom:1.25rem
+}
 .res-hero-ov{position:absolute;inset:0;background:rgba(7,22,12,.55);display:flex;align-items:center;justify-content:center}
 .res-hero-t{font-family:'Cormorant Garamond',serif;font-style:italic;font-size:17px;color:rgba(247,243,234,.9)}
 .rtags{display:flex;gap:7px;flex-wrap:wrap;margin-bottom:1rem}
-.rtag{font-size:11px;padding:3px 11px;border-radius:20px;border:.5px solid var(--bds);color:var(--ts);background:var(--bgs)}
+.rtag{
+  font-size:11px;padding:3px 11px;border-radius:20px;
+  border:.5px solid var(--bds);color:var(--ts);background:var(--bgs)
+}
 .rcard{background:var(--bgc);border-radius:var(--rl);padding:1.25rem;margin-bottom:.75rem}
 .rr{display:flex;justify-content:space-between;font-size:13px;padding:6px 0;border-bottom:.5px solid var(--bdt);color:var(--tp)}
 .rr:last-child{border-bottom:none}
 .rk{color:var(--ts)}
-.rtot{display:flex;justify-content:space-between;align-items:flex-end;margin-top:14px;padding-top:14px;border-top:1.5px solid rgba(27,67,50,.25)}
+.rtot{
+  display:flex;justify-content:space-between;align-items:flex-end;
+  margin-top:14px;padding-top:14px;border-top:1.5px solid rgba(27,67,50,.25)
+}
 .rtl{font-size:11px;font-weight:500;color:var(--ts);text-transform:uppercase;letter-spacing:.7px;margin-bottom:4px}
 .rta{font-family:'Cormorant Garamond',serif;font-size:46px;font-weight:600;color:var(--bv);line-height:1}
-.ainfo{font-size:11px;color:var(--ts);padding:8px 12px;border-radius:8px;border:.5px solid var(--bdt);margin-bottom:.75rem;line-height:1.6}
-.bp{background:var(--bv);color:white;border:none;padding:11px 22px;border-radius:50px;font-size:13px;font-weight:500;cursor:pointer;font-family:'Inter',sans-serif;display:inline-flex;align-items:center;gap:7px;transition:opacity .15s}
+.ainfo{
+  font-size:11px;color:var(--ts);padding:8px 12px;border-radius:8px;
+  border:.5px solid var(--bdt);margin-bottom:.75rem;line-height:1.6
+}
+
+/* BUTTONS */
+.bp{
+  background:var(--bv);color:white;border:none;padding:11px 22px;border-radius:50px;
+  font-size:13px;font-weight:500;cursor:pointer;font-family:'Inter',sans-serif;
+  display:inline-flex;align-items:center;gap:7px;transition:opacity .15s
+}
 .bp:hover{opacity:.85}
-.bs{background:transparent;color:var(--ts);border:.5px solid var(--bds);padding:11px 22px;border-radius:50px;font-size:13px;cursor:pointer;font-family:'Inter',sans-serif;display:inline-flex;align-items:center;gap:6px}
+.bs{
+  background:transparent;color:var(--ts);border:.5px solid var(--bds);
+  padding:11px 22px;border-radius:50px;font-size:13px;cursor:pointer;
+  font-family:'Inter',sans-serif;display:inline-flex;align-items:center;gap:6px
+}
 .bs:hover{background:var(--bgs)}
-.bcta{width:100%;background:var(--bo);color:var(--bnoir);border:none;padding:15px 24px;border-radius:50px;font-size:14px;font-weight:500;cursor:pointer;font-family:'Inter',sans-serif;display:flex;align-items:center;justify-content:center;gap:8px;transition:opacity .15s}
+.bcta{
+  width:100%;background:var(--bo);color:var(--bnoir);border:none;padding:15px 24px;
+  border-radius:50px;font-size:14px;font-weight:500;cursor:pointer;
+  font-family:'Inter',sans-serif;display:flex;align-items:center;justify-content:center;gap:8px;
+  transition:opacity .15s
+}
 .bcta:hover{opacity:.88}
-.wa{display:flex;align-items:center;justify-content:center;gap:6px;font-size:12px;color:var(--ts);text-decoration:none;margin-top:10px;padding:8px;border-radius:var(--rm);transition:color .15s}
+.wa{
+  display:flex;align-items:center;justify-content:center;gap:6px;
+  font-size:12px;color:var(--ts);text-decoration:none;
+  margin-top:10px;padding:8px;border-radius:var(--rm);transition:color .15s
+}
 .wa:hover{color:var(--tp)}
 .nav{display:flex;justify-content:space-between;margin-top:1.5rem;align-items:center}
-.footer{text-align:center;margin-top:2rem;padding-top:1.5rem;border-top:.5px solid var(--bdt);font-size:11px;color:var(--tt);line-height:1.8}
+
+/* FOOTER */
+.footer{
+  text-align:center;margin-top:2rem;padding-top:1.5rem;
+  border-top:.5px solid var(--bdt);font-size:11px;color:var(--tt);line-height:1.8
+}
 .footer a{color:var(--bo);text-decoration:none}
 .footer a:hover{text-decoration:underline}
-@media(max-width:480px){.fgrid{grid-template-columns:repeat(2,1fr)}.fc{height:130px}.dr{grid-template-columns:1fr}.hero-name{font-size:22px;letter-spacing:2px}.ph-num{font-size:36px}.rta{font-size:36px}}
+
+/* RESPONSIVE */
+@media(max-width:480px){
+  .fgrid{grid-template-columns:repeat(2,1fr)}
+  .fc{height:130px}
+  .dr{grid-template-columns:1fr}
+  .hero-name{font-size:22px;letter-spacing:2px}
+  .ph-num{font-size:36px}
+  .rta{font-size:36px}
+}
 </style>
 </head>
 <body>
 <div class="page">
-<div class="hero"><div class="hero-ov"><span class="hero-rc">Retreat Center</span><p class="hero-name">Aventure Baobab</p><div class="hero-sep"><span class="hero-line"></span><span class="hero-tag">ou ni réyel</span><span class="hero-line"></span></div><span class="hero-calc">Calculateur de séjour · Sainte-Anne, Guadeloupe</span></div></div>
-<div class="dias-badge"><span class="dias-dot"></span>Outil développé par <strong style="margin:0 3px">DIAS</strong> · Digijohn AI Solutions<span class="dias-dot"></span></div>
-<div class="prog"><div class="sdot active" id="sd1"><div class="d"><span class="dn">1</span><i class="ti ti-check dc"></i></div><span class="dl">Formule</span></div><div class="sdot" id="sd2"><div class="d"><span class="dn">2</span><i class="ti ti-check dc"></i></div><span class="dl">Séjour</span></div><div class="sdot" id="sd3"><div class="d"><span class="dn">3</span><i class="ti ti-check dc"></i></div><span class="dl">Options</span></div><div class="sdot" id="sd4"><div class="d"><span class="dn">4</span><i class="ti ti-check dc"></i></div><span class="dl">Devis</span></div></div>
-<div class="pnl on" id="p1"><div class="sth"><h2 class="sth-t">Quelle expérience vous attire ?</h2><p class="sth-s">9 formules — du séjour libre au camp immersif</p></div><div class="fgrid" id="fgrid"></div><div class="nav"><span></span><button class="bp" onclick="goStep(2)">Choisir mon séjour <i class="ti ti-arrow-right"></i></button></div></div>
-<div class="pnl" id="p2"><div class="sth"><h2 class="sth-t">Dates &amp; participants</h2><p class="sth-s">La saison tarifaire est calculée automatiquement</p></div><div id="sfdisp"></div><div class="fcard"><div class="dr"><div><label class="flbl" for="da">Arrivée</label><input type="date" id="da" onchange="updS()"></div><div><label class="flbl" for="dd">Départ</label><input type="date" id="dd" onchange="updS()"></div></div><div id="seadisp"></div><div class="mwarn" id="mwarn"></div><div style="margin-top:.75rem"><div class="ph"><span class="ph-lbl">Participants</span><div><span class="ph-num" id="pval">4</span><span class="ph-unit">pers.</span></div></div><input type="range" id="np" min="1" max="20" value="4" step="1" oninput="updP(this.value)"><div style="display:flex;justify-content:space-between;font-size:10px;color:var(--ts);margin-top:3px"><span>1</span><span>20</span></div></div></div><div class="nav"><button class="bs" onclick="goStep(1)"><i class="ti ti-arrow-left"></i> Retour</button><button class="bp" onclick="goStep(3)">Options <i class="ti ti-arrow-right"></i></button></div></div>
-<div class="pnl" id="p3"><div class="sth"><h2 class="sth-t">Options &amp; suppléments</h2><p class="sth-s">Personnalisez votre expérience Baobab</p></div><div class="fcard"><div id="olist"></div></div><div class="nav"><button class="bs" onclick="goStep(2)"><i class="ti ti-arrow-left"></i> Retour</button><button class="bp" onclick="goStep(4)">Voir mon devis <i class="ti ti-arrow-right"></i></button></div></div>
-<div class="pnl" id="p4"><div class="res-hero"><div class="res-hero-ov"><p class="res-hero-t">Votre séjour de rêve vous attend…</p></div></div><div class="rtags" id="rtags"></div><div class="rcard" id="rcap"></div><div class="ainfo" id="ainfo"></div><button class="bcta" id="ctabtn"><i class="ti ti-calendar-plus"></i>Réserver avec Paul Philippe</button><a class="wa" href="https://wa.me/590690343342" target="_blank" rel="noopener"><i class="ti ti-brand-whatsapp"></i>WhatsApp direct : 0690 34 33 42</a><div class="nav" style="margin-top:1rem"><button class="bs" onclick="goStep(3)"><i class="ti ti-arrow-left"></i> Modifier</button><button class="bs" onclick="resetC()"><i class="ti ti-refresh"></i> Nouveau calcul</button></div></div>
-<div class="footer"><p>Tarifs indicatifs 2026 · à confirmer avec Paul Philippe Desbois</p><p style="margin-top:4px"><a href="https://www.gite-sainte-anne-guadeloupe.com" target="_blank" rel="noopener">gite-sainte-anne-guadeloupe.com</a> &nbsp;·&nbsp; Outil DIAS · <a href="https://dias.solutions" target="_blank" rel="noopener">dias.solutions</a></p></div>
+
+  <!-- HERO -->
+  <div class="hero">
+    <div class="hero-ov">
+      <span class="hero-rc">Retreat Center</span>
+      <p class="hero-name">Aventure Baobab</p>
+      <div class="hero-sep">
+        <span class="hero-line"></span>
+        <span class="hero-tag">ou ni réyel</span>
+        <span class="hero-line"></span>
+      </div>
+      <span class="hero-calc">Calculateur de séjour · Sainte-Anne, Guadeloupe</span>
+    </div>
+  </div>
+
+  <div class="dias-badge">
+    <span class="dias-dot"></span>
+    Outil développé par <strong style="margin:0 3px">DIAS</strong> · Digijohn AI Solutions
+    <span class="dias-dot"></span>
+  </div>
+
+  <!-- PROGRESS -->
+  <div class="prog">
+    <div class="sdot active" id="sd1"><div class="d"><span class="dn">1</span><i class="ti ti-check dc"></i></div><span class="dl">Formule</span></div>
+    <div class="sdot" id="sd2"><div class="d"><span class="dn">2</span><i class="ti ti-check dc"></i></div><span class="dl">Séjour</span></div>
+    <div class="sdot" id="sd3"><div class="d"><span class="dn">3</span><i class="ti ti-check dc"></i></div><span class="dl">Options</span></div>
+    <div class="sdot" id="sd4"><div class="d"><span class="dn">4</span><i class="ti ti-check dc"></i></div><span class="dl">Devis</span></div>
+  </div>
+
+  <!-- STEP 1 -->
+  <div class="pnl on" id="p1">
+    <div class="sth">
+      <h2 class="sth-t">Quelle expérience vous attire ?</h2>
+      <p class="sth-s">9 formules — du séjour libre au camp immersif</p>
+    </div>
+    <div class="fgrid" id="fgrid"></div>
+    <div class="nav">
+      <span></span>
+      <button class="bp" onclick="goStep(2)">Choisir mon séjour <i class="ti ti-arrow-right"></i></button>
+    </div>
+  </div>
+
+  <!-- STEP 2 -->
+  <div class="pnl" id="p2">
+    <div class="sth">
+      <h2 class="sth-t">Dates & participants</h2>
+      <p class="sth-s">La saison tarifaire est calculée automatiquement</p>
+    </div>
+    <div id="sfdisp"></div>
+    <div class="fcard">
+      <div class="dr">
+        <div>
+          <label class="flbl" for="da">Arrivée</label>
+          <input type="date" id="da" onchange="updS()">
+        </div>
+        <div>
+          <label class="flbl" for="dd">Départ</label>
+          <input type="date" id="dd" onchange="updS()">
+        </div>
+      </div>
+      <div id="seadisp"></div>
+      <div class="mwarn" id="mwarn"></div>
+      <div style="margin-top:.75rem">
+        <div class="ph">
+          <span class="ph-lbl">Participants</span>
+          <div><span class="ph-num" id="pval">4</span><span class="ph-unit">pers.</span></div>
+        </div>
+        <input type="range" id="np" min="1" max="20" value="4" step="1" oninput="updP(this.value)">
+        <div style="display:flex;justify-content:space-between;font-size:10px;color:var(--ts);margin-top:3px">
+          <span>1</span><span>20</span>
+        </div>
+      </div>
+    </div>
+    <div class="nav">
+      <button class="bs" onclick="goStep(1)"><i class="ti ti-arrow-left"></i> Retour</button>
+      <button class="bp" onclick="goStep(3)">Options <i class="ti ti-arrow-right"></i></button>
+    </div>
+  </div>
+
+  <!-- STEP 3 -->
+  <div class="pnl" id="p3">
+    <div class="sth">
+      <h2 class="sth-t">Options & suppléments</h2>
+      <p class="sth-s">Personnalisez votre expérience Baobab</p>
+    </div>
+    <div class="fcard"><div id="olist"></div></div>
+    <div class="nav">
+      <button class="bs" onclick="goStep(2)"><i class="ti ti-arrow-left"></i> Retour</button>
+      <button class="bp" onclick="goStep(4)">Voir mon devis <i class="ti ti-arrow-right"></i></button>
+    </div>
+  </div>
+
+  <!-- STEP 4 -->
+  <div class="pnl" id="p4">
+    <div class="res-hero">
+      <div class="res-hero-ov">
+        <p class="res-hero-t">Votre séjour de rêve vous attend…</p>
+      </div>
+    </div>
+    <div class="rtags" id="rtags"></div>
+    <div class="rcard" id="rcap"></div>
+    <div class="ainfo" id="ainfo"></div>
+    <button class="bcta" id="ctabtn">
+      <i class="ti ti-calendar-plus"></i>
+      Réserver avec Paul Philippe
+    </button>
+    <a class="wa" href="https://wa.me/590690343342" target="_blank" rel="noopener">
+      <i class="ti ti-brand-whatsapp"></i>
+      WhatsApp direct : 0690 34 33 42
+    </a>
+    <div class="nav" style="margin-top:1rem">
+      <button class="bs" onclick="goStep(3)"><i class="ti ti-arrow-left"></i> Modifier</button>
+      <button class="bs" onclick="resetC()"><i class="ti ti-refresh"></i> Nouveau calcul</button>
+    </div>
+  </div>
+
+  <div class="footer">
+    <p>Tarifs indicatifs 2026 · à confirmer avec Paul Philippe Desbois</p>
+    <p style="margin-top:4px">
+      <a href="https://www.gite-sainte-anne-guadeloupe.com" target="_blank" rel="noopener">gite-sainte-anne-guadeloupe.com</a>
+      &nbsp;·&nbsp;
+      Outil DIAS · <a href="https://dias.solutions" target="_blank" rel="noopener">dias.solutions</a>
+    </p>
+  </div>
+
 </div>
 <script>
 const B='https://www.gite-sainte-anne-guadeloupe.com/wp-content/uploads/2022/12/';
 const F=[
-{id:'heb',name:'Hébergement',desc:'Séjour libre · plage & piscine',img:B+'gite-baobab-1-12.jpg',p:{BS:55,MS:70,HS:90},minP:2,maxP:20,minN:1,pp:true},
-{id:'mma',name:'Fight Camp MMA',desc:'Immersion arts martiaux',img:B+'fight-camp-baobab-6-1024x576.jpg',p:{BS:85,MS:105,HS:130},minP:4,maxP:16,minN:7,pp:true},
-{id:'raid',name:'Raid Day-Trip',desc:'Aventure & trails nature',img:B+'espace-piscine-10.jpg',p:{BS:75,MS:95,HS:120},minP:2,maxP:16,minN:2,pp:true},
-{id:'favent',name:'Fight Aventure',desc:'MMA complet + raids',img:B+'gite-baobab-4-18.jpg',p:{BS:110,MS:135,HS:165},minP:4,maxP:16,minN:7,pp:true},
-{id:'pens',name:'Pension complète',desc:'Hébergement + repas inclus',img:B+'gite-baobab-2-9.jpg',p:{BS:90,MS:110,HS:140},minP:2,maxP:20,minN:3,pp:true},
-{id:'vao',name:'VAO & Ados',desc:'Vacances adaptées & jeunesse',img:B+'espace-piscine-5.jpg',p:{BS:80,MS:100,HS:125},minP:2,maxP:16,minN:5,pp:true},
-{id:'grp',name:'Week-end groupe',desc:'Privatisation 2 à 4 gîtes',img:B+'espace-piscine-7.jpg',p:{BS:320,MS:400,HS:520},minP:8,maxP:20,minN:2,pp:false},
-{id:'evt',name:'Événement',desc:'Privatisation totale · ≤ 100 pers.',img:B+'espace-piscine-6.jpg',p:{BS:1200,MS:1200,HS:1500},minP:20,maxP:100,minN:1,pp:false},
-{id:'yoga',name:'Yoga Retreat',desc:'Bien-être face à la mer',img:B+'espace-piscine-12.jpg',p:{BS:85,MS:105,HS:130},minP:2,maxP:16,minN:5,pp:true},
+  {id:'heb',name:'Hébergement',desc:'Séjour libre · plage & piscine',img:B+'gite-baobab-1-12.jpg',p:{BS:20,MS:25,HS:30},minP:2,maxP:20,minN:1,pp:true},
+  {id:'mma',name:'Fight Camp MMA',desc:'Immersion arts martiaux',img:B+'fight-camp-baobab-6-1024x576.jpg',p:{BS:60,MS:65,HS:70},minP:4,maxP:16,minN:7,pp:true},
+  {id:'raid',name:'Raid Day-Trip',desc:'Aventure & trails nature',img:B+'espace-piscine-10.jpg',p:{BS:60,MS:65,HS:70},minP:2,maxP:16,minN:2,pp:true},
+  {id:'favent',name:'Fight Aventure',desc:'MMA complet + raids',img:B+'gite-baobab-4-18.jpg',p:{BS:100,MS:105,HS:110},minP:4,maxP:16,minN:7,pp:true},
+  {id:'pens',name:'Pension complète',desc:'Hébergement + repas inclus',img:B+'gite-baobab-2-9.jpg',p:{BS:160,MS:165,HS:170},minP:2,maxP:20,minN:3,pp:true},
+  {id:'vao',name:'VAO & Ados',desc:'Vacances adaptées & jeunesse',img:B+'espace-piscine-5.jpg',p:{BS:220,MS:225,HS:230},minP:2,maxP:16,minN:5,pp:true},
+  {id:'grp',name:'Week-end groupe',desc:'Privatisation 2 à 4 gîtes',img:B+'espace-piscine-7.jpg',p:{BS:20,MS:25,HS:30},minP:4,maxP:20,minN:2,pp:true},
+  {id:'evt',name:'Événement',desc:'Privatisation totale · ≤ 100 pers.',img:B+'espace-piscine-6.jpg',p:{BS:860,MS:900,HS:940},minP:15,maxP:100,minN:1,pp:false},
+  {id:'yoga',name:'Yoga Retreat',desc:'Bien-être face à la mer',img:B+'espace-piscine-12.jpg',p:{BS:85,MS:105,HS:130},minP:2,maxP:16,minN:5,pp:true},
 ];
 const O=[
-{id:'tx',name:'Transfert aéroport',desc:'Aller-retour Pointe-à-Pitre',ico:'ti-car',p:25,pp:true},
-{id:'pdj',name:'Petit-déjeuner tropical',desc:'Formule fraîcheur chaque matin',ico:'ti-coffee',p:12,pp:true},
-{id:'bbq',name:'Soirée BBQ',desc:'Grillades & apéro poolside',ico:'ti-flame',p:35,pp:true},
-{id:'tri',name:'Excursion trimaran',desc:'Sortie mer avec capitaine',ico:'ti-anchor',p:65,pp:true},
-{id:'men',name:'Ménage intermédiaire',desc:'Nettoyage supplémentaire',ico:'ti-brush',p:80,pp:false},
+  {id:'tx',name:'Transfert aéroport',desc:'Aller-retour Pointe-à-Pitre',ico:'ti-car',p:25,pp:true},
+  {id:'pdj',name:'Petit-déjeuner tropical',desc:'Formule fraîcheur chaque matin',ico:'ti-coffee',p:12,pp:true},
+  {id:'bbq',name:'Soirée BBQ',desc:'Grillades & apéro poolside',ico:'ti-flame',p:35,pp:true},
+  {id:'tri',name:'Excursion trimaran',desc:'Sortie mer avec capitaine',ico:'ti-anchor',p:65,pp:true},
+  {id:'men',name:'Ménage intermédiaire',desc:'Nettoyage supplémentaire',ico:'ti-brush',p:80,pp:false},
 ];
-function getSea(m){if([7,8,12].includes(m))return{code:'HS',cls:'hs',lbl:'Haute Saison',detail:'juil.–août · décembre',ico:'ti-sun'};if([1,2,3,4].includes(m))return{code:'MS',cls:'ms',lbl:'Moyenne Saison',detail:'janvier – avril',ico:'ti-cloud-sun'};return{code:'BS',cls:'bs',lbl:'Basse Saison',detail:'mai, juin, sept.–nov.',ico:'ti-leaf'};}
+function getSea(m){
+  if([7,8,12].includes(m))return{code:'HS',cls:'hs',lbl:'Haute Saison',detail:'juil.–août · décembre',ico:'ti-sun'};
+  if([1,2,3,4].includes(m))return{code:'MS',cls:'ms',lbl:'Moyenne Saison',detail:'janvier – avril',ico:'ti-cloud-sun'};
+  return{code:'BS',cls:'bs',lbl:'Basse Saison',detail:'mai, juin, sept.–nov.',ico:'ti-leaf'};
+}
 const eur=n=>new Intl.NumberFormat('fr-FR',{style:'currency',currency:'EUR',maximumFractionDigits:0}).format(Math.round(n));
 const st={f:null,np:4,nuits:0,sea:null,opts:{}};
-function goStep(n){if(n===2&&!st.f){alert('Choisissez une formule pour continuer.');return;}if(n===3&&st.nuits<1){alert('Sélectionnez vos dates de séjour.');return;}document.querySelectorAll('.pnl').forEach(p=>p.classList.remove('on'));document.getElementById('p'+n).classList.add('on');document.querySelectorAll('.sdot').forEach((d,i)=>{d.classList.remove('active','done');if(i+1<n)d.classList.add('done');if(i+1===n)d.classList.add('active');});window.scrollTo({top:0,behavior:'smooth'});if(n===2)renderSF();if(n===4)renderRecap();}
-function renderGrid(){document.getElementById('fgrid').innerHTML=F.map(f=>`<div class="fc${st.f?.id===f.id?' on':''}" style="background-image:url('${f.img}')" onclick="selF('${f.id}')"><div class="fc-ov"><div class="fc-name">${f.name}</div><div class="fc-desc">${f.desc}</div><div class="fc-from">dès ${f.p.BS}€/pers</div></div><div class="fc-tick"><i class="ti ti-check" style="font-size:12px"></i></div></div>`).join('');}
-function selF(id){st.f=F.find(f=>f.id===id);const sl=document.getElementById('np');sl.min=st.f.minP;sl.max=st.f.maxP;if(st.np<st.f.minP){st.np=st.f.minP;sl.value=st.np;document.getElementById('pval').textContent=st.np;}if(st.np>st.f.maxP){st.np=st.f.maxP;sl.value=st.np;document.getElementById('pval').textContent=st.np;}renderGrid();}
-function renderSF(){if(!st.f)return;document.getElementById('sfdisp').innerHTML=`<div class="sf-pill"><img class="sf-thumb" src="${st.f.img}" alt="${st.f.name}" onerror="this.style.display='none'"><div><div class="sf-name">${st.f.name}</div><div class="sf-sub">${st.f.desc} · min. ${st.f.minN} nuit${st.f.minN>1?'s':''}</div></div></div>`;}
-function updS(){const av=document.getElementById('da').value,dv=document.getElementById('dd').value;if(!av||!dv)return;const a=new Date(av),d=new Date(dv);if(d<=a)return;st.nuits=Math.round((d-a)/864e5);st.sea=getSea(a.getMonth()+1);document.getElementById('seadisp').innerHTML=`<div class="sea ${st.sea.cls}"><i class="ti ${st.sea.ico} sea-ico"></i><div><div class="sea-lbl">${st.sea.lbl} · ${st.sea.detail}</div><div class="sea-n">${st.nuits} nuit${st.nuits>1?'s':''} · arrivée ${new Date(av).toLocaleDateString('fr-FR',{day:'numeric',month:'long'})}</div></div></div>`;const mw=document.getElementById('mwarn');if(st.f&&st.nuits<st.f.minN){mw.style.display='block';mw.innerHTML=`<i class="ti ti-info-circle"></i> Durée minimale pour cette formule : <strong>${st.f.minN} nuits</strong>.`;}else mw.style.display='none';}
+
+function goStep(n){
+  if(n===2&&!st.f){alert('Choisissez une formule pour continuer.');return;}
+  if(n===3&&st.nuits<1){alert('Sélectionnez vos dates de séjour.');return;}
+  document.querySelectorAll('.pnl').forEach(p=>p.classList.remove('on'));
+  document.getElementById('p'+n).classList.add('on');
+  document.querySelectorAll('.sdot').forEach((d,i)=>{
+    d.classList.remove('active','done');
+    if(i+1<n)d.classList.add('done');
+    if(i+1===n)d.classList.add('active');
+  });
+  window.scrollTo({top:0,behavior:'smooth'});
+  if(n===2)renderSF();
+  if(n===4)renderRecap();
+}
+
+function renderGrid(){
+  document.getElementById('fgrid').innerHTML=F.map(f=>`
+    <div class="fc${st.f?.id===f.id?' on':''}" style="background-image:url('${f.img}')" onclick="selF('${f.id}')">
+      <div class="fc-ov">
+        <div class="fc-name">${f.name}</div>
+        <div class="fc-desc">${f.desc}</div>
+        <div class="fc-from">dès ${f.p.BS}€/pers</div>
+      </div>
+      <div class="fc-tick"><i class="ti ti-check" style="font-size:12px"></i></div>
+    </div>`).join('');
+}
+
+function selF(id){
+  st.f=F.find(f=>f.id===id);
+  const sl=document.getElementById('np');
+  sl.min=st.f.minP;sl.max=st.f.maxP;
+  if(st.np<st.f.minP){st.np=st.f.minP;sl.value=st.np;document.getElementById('pval').textContent=st.np;}
+  if(st.np>st.f.maxP){st.np=st.f.maxP;sl.value=st.np;document.getElementById('pval').textContent=st.np;}
+  renderGrid();
+}
+
+function renderSF(){
+  if(!st.f)return;
+  document.getElementById('sfdisp').innerHTML=`
+    <div class="sf-pill">
+      <img class="sf-thumb" src="${st.f.img}" alt="${st.f.name}" onerror="this.style.display='none'">
+      <div>
+        <div class="sf-name">${st.f.name}</div>
+        <div class="sf-sub">${st.f.desc} · min. ${st.f.minN} nuit${st.f.minN>1?'s':''}</div>
+      </div>
+    </div>`;
+}
+
+function updS(){
+  const av=document.getElementById('da').value,dv=document.getElementById('dd').value;
+  if(!av||!dv)return;
+  const a=new Date(av),d=new Date(dv);
+  if(d<=a)return;
+  st.nuits=Math.round((d-a)/864e5);
+  st.sea=getSea(a.getMonth()+1);
+  document.getElementById('seadisp').innerHTML=`
+    <div class="sea ${st.sea.cls}">
+      <i class="ti ${st.sea.ico} sea-ico"></i>
+      <div>
+        <div class="sea-lbl">${st.sea.lbl} · ${st.sea.detail}</div>
+        <div class="sea-n">${st.nuits} nuit${st.nuits>1?'s':''} · arrivée ${new Date(av).toLocaleDateString('fr-FR',{day:'numeric',month:'long'})}</div>
+      </div>
+    </div>`;
+  const mw=document.getElementById('mwarn');
+  if(st.f&&st.nuits<st.f.minN){
+    mw.style.display='block';
+    mw.innerHTML=`<i class="ti ti-info-circle"></i> Durée minimale pour cette formule : <strong>${st.f.minN} nuits</strong>.`;
+  } else mw.style.display='none';
+}
+
 function updP(v){st.np=+v;document.getElementById('pval').textContent=v;}
-function renderOpts(){document.getElementById('olist').innerHTML=O.map(o=>`<div class="oi"><div class="oi-ico"><i class="ti ${o.ico}"></i></div><div style="flex:1"><div class="oi-name">${o.name}</div><div class="oi-desc">${o.desc}</div><div class="oi-px">${o.p}€${o.pp?' · par pers. par nuit':' · séjour complet'}</div></div><input type="checkbox" id="o-${o.id}" ${st.opts[o.id]?'checked':''} onchange="st.opts['${o.id}']=this.checked"></div>`).join('');}
-function calcT(){const sc=st.sea?.code||'BS',f=st.f;const base=f.pp?f.p[sc]*st.np*st.nuits:f.p[sc]*st.nuits;let oa=0;const ol=O.filter(o=>st.opts[o.id]).map(o=>{const a=o.pp?o.p*st.np*st.nuits:o.p*st.nuits;oa+=a;return`<div class="rr"><span class="rk">${o.name}</span><span>+ ${eur(a)}</span></div>`;}).join('');return{base,oa,total:base+oa,ol};}
-function renderRecap(){const f=st.f;if(!f)return;const{base,oa,total,ol}=calcT();const ap=Math.round(total*.3);const da=document.getElementById('da').value,dd=document.getElementById('dd').value;const dateStr=da&&dd?`${new Date(da).toLocaleDateString('fr-FR')} → ${new Date(dd).toLocaleDateString('fr-FR')}`:'—';document.getElementById('rtags').innerHTML=[`<span class="rtag">${f.name}</span>`,st.sea?`<span class="rtag">${st.sea.lbl}</span>`:'',`<span class="rtag">${st.nuits} nuit${st.nuits>1?'s':''}</span>`,`<span class="rtag">${st.np} pers.</span>`].join('');document.getElementById('rcap').innerHTML=`<div class="rr"><span class="rk">Période</span><span>${dateStr}</span></div><div class="rr"><span class="rk">Formule</span><span style="font-weight:500">${f.name}</span></div><div class="rr"><span class="rk">Saison</span><span>${st.sea?.lbl||'—'}</span></div><div class="rr"><span class="rk">Participants</span><span>${st.np} personnes</span></div><div class="rr"><span class="rk">Base séjour</span><span>${eur(base)}</span></div>${ol}<div class="rtot"><div><div class="rtl">Total estimé TTC</div><div style="font-size:11px;color:var(--ts);margin-top:4px">Acompte : <strong>${eur(ap)}</strong> (30%)</div></div><span class="rta">${eur(total)}</span></div>`;document.getElementById('ainfo').innerHTML=`<i class="ti ti-info-circle" style="vertical-align:-2px;margin-right:4px"></i>Tarifs indicatifs 2026 · Confirmation par Paul Philippe · Solde à l'arrivée`;document.getElementById('ctabtn').onclick=()=>{const msg=`Bonjour Paul Philippe,\n\nJe souhaite réserver la formule "${f.name}" pour ${st.np} personnes, du ${da} au ${dd} (${st.nuits} nuits, ${st.sea?.lbl}).\nEstimation : ${eur(base+oa)}.\n\nMerci de me confirmer la disponibilité.`;window.open(`https://wa.me/590690343342?text=${encodeURIComponent(msg)}`,'_blank');};}
-function resetC(){st.f=null;st.np=4;st.nuits=0;st.sea=null;st.opts={};['da','dd'].forEach(id=>{document.getElementById(id).value='';});document.getElementById('seadisp').innerHTML='';document.getElementById('sfdisp').innerHTML='';document.getElementById('mwarn').style.display='none';document.getElementById('np').value=4;document.getElementById('pval').textContent=4;renderGrid();renderOpts();goStep(1);}
+
+function renderOpts(){
+  document.getElementById('olist').innerHTML=O.map(o=>`
+    <div class="oi">
+      <div class="oi-ico"><i class="ti ${o.ico}"></i></div>
+      <div style="flex:1">
+        <div class="oi-name">${o.name}</div>
+        <div class="oi-desc">${o.desc}</div>
+        <div class="oi-px">${o.p}€${o.pp?' · par pers. par nuit':' · séjour complet'}</div>
+      </div>
+      <input type="checkbox" id="o-${o.id}" ${st.opts[o.id]?'checked':''} onchange="st.opts['${o.id}']=this.checked">
+    </div>`).join('');
+}
+
+function calcT(){
+  const sc=st.sea?.code||'BS',f=st.f;
+  const base=f.pp?f.p[sc]*st.np*st.nuits:f.p[sc]*st.nuits;
+  let oa=0;
+  const ol=O.filter(o=>st.opts[o.id]).map(o=>{
+    const a=o.pp?o.p*st.np*st.nuits:o.p*st.nuits;oa+=a;
+    return`<div class="rr"><span class="rk">${o.name}</span><span>+ ${eur(a)}</span></div>`;
+  }).join('');
+  return{base,oa,total:base+oa,ol};
+}
+
+function renderRecap(){
+  const f=st.f;if(!f)return;
+  const{base,oa,total,ol}=calcT();
+  const ap=Math.round(total*.3);
+  const da=document.getElementById('da').value,dd=document.getElementById('dd').value;
+  const dateStr=da&&dd?`${new Date(da).toLocaleDateString('fr-FR')} → ${new Date(dd).toLocaleDateString('fr-FR')}`:'—';
+  document.getElementById('rtags').innerHTML=[
+    `<span class="rtag">${f.name}</span>`,
+    st.sea?`<span class="rtag">${st.sea.lbl}</span>`:'',
+    `<span class="rtag">${st.nuits} nuit${st.nuits>1?'s':''}</span>`,
+    `<span class="rtag">${st.np} pers.</span>`,
+  ].join('');
+  document.getElementById('rcap').innerHTML=`
+    <div class="rr"><span class="rk">Période</span><span>${dateStr}</span></div>
+    <div class="rr"><span class="rk">Formule</span><span style="font-weight:500">${f.name}</span></div>
+    <div class="rr"><span class="rk">Saison</span><span>${st.sea?.lbl||'—'}</span></div>
+    <div class="rr"><span class="rk">Participants</span><span>${st.np} personnes</span></div>
+    <div class="rr"><span class="rk">Base séjour</span><span>${eur(base)}</span></div>
+    ${ol}
+    <div class="rtot">
+      <div>
+        <div class="rtl">Total estimé TTC</div>
+        <div style="font-size:11px;color:var(--ts);margin-top:4px">Acompte : <strong>${eur(ap)}</strong> (30%)</div>
+      </div>
+      <span class="rta">${eur(total)}</span>
+    </div>`;
+  document.getElementById('ainfo').innerHTML=
+    `<i class="ti ti-info-circle" style="vertical-align:-2px;margin-right:4px"></i>Tarifs indicatifs 2026 · Confirmation par Paul Philippe · Solde à l'arrivée`;
+  document.getElementById('ctabtn').onclick=()=>{
+    const msg=`Bonjour Paul Philippe,\n\nJe souhaite réserver la formule "${f.name}" pour ${st.np} personnes, du ${da} au ${dd} (${st.nuits} nuits, ${st.sea?.lbl}).\nEstimation : ${eur(base+oa)}.\n\nMerci de me confirmer la disponibilité.`;
+    window.open(`https://wa.me/590690343342?text=${encodeURIComponent(msg)}`,'_blank');
+  };
+}
+
+function resetC(){
+  st.f=null;st.np=4;st.nuits=0;st.sea=null;st.opts={};
+  ['da','dd'].forEach(id=>{document.getElementById(id).value='';});
+  document.getElementById('seadisp').innerHTML='';
+  document.getElementById('sfdisp').innerHTML='';
+  document.getElementById('mwarn').style.display='none';
+  document.getElementById('np').value=4;document.getElementById('pval').textContent=4;
+  renderGrid();renderOpts();goStep(1);
+}
+
 const td=new Date().toISOString().split('T')[0];
 document.getElementById('da').min=td;
 document.getElementById('dd').min=td;
