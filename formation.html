@@ -1,668 +1,409 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>DIAS — Formation &amp; Conseil IA en français | John DIMOSI</title>
-  <meta name="description" content="DIAS — Digijohn IA Solutions. Formation et conseil en intelligence artificielle pour PME et organismes de formation, expliqués en français, sans jargon. Diagnostic offert." />
-
-  <!-- Fonts -->
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Barlow:wght@300;400;500;600&display=swap" rel="stylesheet" />
-
-  <!-- Tailwind -->
-  <script src="https://cdn.tailwindcss.com"></script>
-  <script>
-    tailwind.config = {
-      theme: {
-        extend: {
-          fontFamily: {
-            heading: ["Instrument Serif", "serif"],
-            body: ["Barlow", "sans-serif"],
-          },
-          colors: {
-            dias: {
-              navy: "#0A0F2E",
-              blue: "#1E90FF",
-              cyan: "#00BFFF",
-              violet: "#7B2FBE",
-              violetLight: "#9B4DCA",
-              silver: "#B8C0CC",
-              orange: "#E8821A",
-            },
-          },
-          borderRadius: {
-            DEFAULT: "9999px",
-          },
-        },
-      },
-    };
-  </script>
-
-  <!-- React + Babel + Framer Motion -->
-  <script src="https://unpkg.com/react@18.3.1/umd/react.development.js" integrity="sha384-hD6/rw4ppMLGNu3tX5cjIb+uRZ7UkRJ6BPkLpg4hAu/6onKUg4lLsHAs9EBPT82L" crossorigin="anonymous"></script>
-  <script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.development.js" integrity="sha384-u6aeetuaXnQ38mYT8rp6sbXaQe3NL9t+IBXmnYxwkUI2Hw4bsp2Wvmx4yRQF1uAm" crossorigin="anonymous"></script>
-  <script src="https://unpkg.com/@babel/standalone@7.29.0/babel.min.js" integrity="sha384-m08KidiNqLdpJqLq95G/LEi8Qvjl/xUYll3QILypMoQ65QorJ9Lvtp2RXYGBFj1y" crossorigin="anonymous"></script>
-  <script src="https://unpkg.com/framer-motion@11.11.17/dist/framer-motion.js"></script>
-  <script>window.Motion = window.FramerMotion || window.Motion;</script>
-
-  <!-- Suppress benign Framer Motion list-key dev warnings -->
-  <script>
-    (function () {
-      var _err = console.error;
-      console.error = function () {
-        var first = arguments[0];
-        if (typeof first === "string" && first.indexOf("unique \"key\"") !== -1) return;
-        if (typeof first === "string" && first.indexOf("key") !== -1 && first.indexOf("list") !== -1) return;
-        return _err.apply(console, arguments);
-      };
-    })();
-  </script>
-
-  <style>
-    html, body { margin: 0; padding: 0; }
-    body { background: #0A0F2E; }
-    #root { background: #0A0F2E; }
-
-    /* DIAS brand helpers */
-    .dias-mono {
-      background: linear-gradient(135deg, #9B4DCA 0%, #1E90FF 100%);
-      -webkit-background-clip: text;
-      background-clip: text;
-      color: transparent;
-    }
-    .dias-cta {
-      background: linear-gradient(135deg, #7B2FBE 0%, #1E90FF 100%) !important;
-    }
-    .dias-glow { filter: drop-shadow(0 0 16px rgba(30, 144, 255, 0.5)); }
-    .dias-cta-glow { box-shadow: 0 8px 30px rgba(30, 144, 255, 0.35), inset 0 1px 1px rgba(255,255,255,0.25); }
-
-    .liquid-glass {
-      background: rgba(255, 255, 255, 0.01);
-      background-blend-mode: luminosity;
-      backdrop-filter: blur(4px);
-      -webkit-backdrop-filter: blur(4px);
-      border: none;
-      box-shadow: inset 0 1px 1px rgba(255, 255, 255, 0.1);
-      position: relative;
-      overflow: hidden;
-    }
-    .liquid-glass::before {
-      content: "";
-      position: absolute;
-      inset: 0;
-      border-radius: inherit;
-      padding: 1.4px;
-      background: linear-gradient(
-        180deg,
-        rgba(255, 255, 255, 0.45) 0%,
-        rgba(255, 255, 255, 0.15) 20%,
-        rgba(255, 255, 255, 0) 40%,
-        rgba(255, 255, 255, 0) 60%,
-        rgba(255, 255, 255, 0.15) 80%,
-        rgba(255, 255, 255, 0.45) 100%
-      );
-      -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
-      -webkit-mask-composite: xor;
-      mask-composite: exclude;
-      pointer-events: none;
-    }
-
-    .liquid-glass-strong {
-      background: rgba(255, 255, 255, 0.01);
-      background-blend-mode: luminosity;
-      backdrop-filter: blur(50px);
-      -webkit-backdrop-filter: blur(50px);
-      border: none;
-      box-shadow: 4px 4px 4px rgba(0, 0, 0, 0.05), inset 0 1px 1px rgba(255, 255, 255, 0.15);
-      position: relative;
-      overflow: hidden;
-    }
-    .liquid-glass-strong::before {
-      content: "";
-      position: absolute;
-      inset: 0;
-      border-radius: inherit;
-      padding: 1.4px;
-      background: linear-gradient(
-        180deg,
-        rgba(255, 255, 255, 0.5) 0%,
-        rgba(255, 255, 255, 0.2) 20%,
-        rgba(255, 255, 255, 0) 40%,
-        rgba(255, 255, 255, 0) 60%,
-        rgba(255, 255, 255, 0.2) 80%,
-        rgba(255, 255, 255, 0.5) 100%
-      );
-      -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
-      -webkit-mask-composite: xor;
-      mask-composite: exclude;
-      pointer-events: none;
-    }
-  </style>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>DIAS — L'IA au service des entreprises françaises | Digijohn AI Solutions</title>
+<meta name="description" content="DIAS — Digijohn AI Solutions : conseil, déploiement et formation en intelligence artificielle pour TPE, PME, professions libérales et indépendants. Partout en France, sans jargon, conforme RGPD. Diagnostic IA offert." />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+<style>
+*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+html, body { overflow-x: hidden; }
+body { font-family: 'Inter', sans-serif; background: #010101; color: #fff; }
+.fixed { position: fixed; }
+.absolute { position: absolute; }
+.relative { position: relative; }
+.inset-0 { top: 0; right: 0; bottom: 0; left: 0; }
+/* Scroll Video */
+#scroll-video-container {
+  position: fixed; inset: 0; z-index: -10;
+  background: #0a0a0a; top: -20%;
+}
+#scroll-video-container canvas,
+#scroll-video-container video {
+  position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover;
+}
+#scroll-video-container .overlay { position: absolute; inset: 0; background: rgba(0,0,0,0.2); }
+/* Particles */
+#particles-canvas {
+  position: fixed; inset: 0; width: 100%; height: 100%;
+  pointer-events: none; z-index: 3;
+}
+/* Nav */
+nav {
+  position: fixed; top: 0; left: 0; right: 0; z-index: 50;
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 1.25rem 2.5rem;
+}
+nav .logo { font-weight: 700; font-size: 1.25rem; color: #fff; letter-spacing: 0.04em; }
+nav .nav-links { display: flex; align-items: center; gap: 1.5rem; }
+nav .nav-links a { font-size: 0.875rem; color: #d1d5db; text-decoration: none; transition: color 0.2s; }
+nav .nav-links a:hover { color: #fff; }
+nav .social { display: flex; align-items: center; gap: 1rem; }
+nav .social a { color: #d1d5db; transition: color 0.2s; }
+nav .social a:hover { color: #fff; }
+nav .social svg { width: 1.25rem; height: 1.25rem; }
+/* Hero */
+#hero {
+  position: relative; height: 100vh; width: 100%; display: flex; flex-direction: column;
+}
+#hero .gradient-overlay {
+  position: absolute; inset: 0;
+  background: linear-gradient(to top, rgba(0,0,0,0.6), transparent, transparent);
+}
+#hero .content {
+  position: relative; z-index: 10; flex: 1; display: flex; flex-direction: column;
+  align-items: center; justify-content: flex-end; text-align: center;
+  padding: 0 1.5rem 6rem;
+}
+#hero .subtitle { font-size: 0.875rem; color: #9ca3af; margin-bottom: 1rem; letter-spacing: 0.05em; }
+#hero h1 { font-size: clamp(1.5rem, 5vw, 3.75rem); font-weight: 600; line-height: 1.15; max-width: 48rem; }
+#hero h1 .underlined {
+  position: relative; display: inline-block;
+}
+#hero h1 .underlined .line {
+  position: absolute; bottom: 0.25rem; left: 0; width: 100%; height: 10px;
+  background: #2C5C88; border-radius: 2px;
+}
+#hero h1 .underlined span { position: relative; }
+#hero .ctas {
+  display: flex; align-items: center; gap: 1rem; margin-top: 2.5rem; flex-wrap: wrap; justify-content: center;
+}
+#hero .code-box {
+  display: flex; align-items: center; gap: 0.5rem;
+  background: #1a1a1a; border: 1px solid rgba(55,65,81,0.5);
+  border-radius: 0.5rem; padding: 0.875rem 2rem;
+}
+#hero .code-box .prompt { color: #2C5C88; font-family: monospace; font-size: 0.875rem; }
+#hero .code-box code { font-size: 0.875rem; color: #e5e7eb; font-family: monospace; }
+#hero .cta-btn {
+  display: inline-flex; align-items: center; gap: 0.5rem;
+  background: #2C5C88; color: #fff; font-weight: 500; border-radius: 0.5rem;
+  padding: 0.875rem 2rem; font-size: 0.875rem; text-decoration: none; transition: background 0.2s;
+}
+#hero .cta-btn:hover { background: #3a7aad; }
+#hero .bounce-arrow {
+  position: relative; z-index: 10; display: flex; justify-content: center; padding-bottom: 2rem;
+}
+#hero .bounce-arrow svg { width: 1.5rem; height: 1.5rem; color: #6b7280; animation: bounce 1s infinite; }
+@keyframes bounce {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-25%); }
+}
+/* Cards */
+#fixed-cards {
+  position: fixed; bottom: 0; left: 0; right: 0; z-index: 4;
+  padding: 2rem 2.5rem; opacity: 0; pointer-events: none;
+}
+#fixed-cards .grid {
+  max-width: 72rem; margin: 0 auto;
+  display: grid; grid-template-columns: repeat(3, 1fr); gap: 2.5rem;
+}
+#fixed-cards .card h3 { font-size: 1.5rem; font-weight: 700; color: #fff; margin-bottom: 1rem; }
+#fixed-cards .card p { color: #d1d5db; font-size: 0.875rem; line-height: 1.6; }
+/* Section 3 */
+#section-three {
+  position: relative; min-height: 100vh; display: flex; align-items: flex-end;
+  justify-content: center; padding: 0 2.5rem 8rem;
+}
+#section-three .inner {
+  position: relative; z-index: 10; display: flex; flex-direction: column;
+  align-items: center; text-align: center;
+  opacity: 0; transform: translateY(32px); filter: blur(8px);
+  transition: opacity 1s ease-out, transform 1s ease-out, filter 1s ease-out;
+}
+#section-three .inner.visible { opacity: 1; transform: translateY(0); filter: blur(0); }
+#section-three .inner p { color: #d1d5db; font-size: 1rem; margin-bottom: 0.75rem; }
+#section-three .inner h2 { font-size: clamp(1.875rem, 6vw, 4.5rem); font-weight: 700; }
+/* Content wrapper */
+#content { position: relative; z-index: 2; }
+/* Responsive */
+@media (max-width: 768px) {
+  nav { padding: 1rem 1.5rem; }
+  nav .nav-links { display: none; }
+  #hero .content { padding-bottom: 5rem; }
+  #hero h1 { font-size: 1.5rem; }
+  #hero .ctas { flex-direction: column; }
+  #fixed-cards .grid { grid-template-columns: 1fr; gap: 1.5rem; }
+  #fixed-cards { padding: 1.5rem 1rem; }
+  #section-three { padding-bottom: 5rem; }
+}
+</style>
 </head>
 <body>
-  <div id="root"></div>
-
-  <!-- ============================ Icons + DIAS Logo ============================ -->
-  <script type="text/babel">
-    function ArrowUpRight({ className }) {
-      return (
-        <svg className={className} viewBox="0 0 24 24" fill="none" stroke="currentColor"
-          strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"
-          xmlns="http://www.w3.org/2000/svg">
-          <path d="M7 17L17 7" />
-          <path d="M7 7h10v10" />
-        </svg>
-      );
+<!-- Scroll Video Background -->
+<div id="scroll-video-container">
+  <canvas id="video-canvas"></canvas>
+  <video id="video-fallback" muted playsinline preload="auto" crossorigin="anonymous"
+    src="https://d8j0ntlcm91z4.cloudfront.net/user_38xzZboKViGWJOttwIXH07lWA1P/hf_20260616_212935_bbf608da-62d1-4f25-9be4-c346e4d09cc8.mp4"
+  ></video>
+  <div class="overlay"></div>
+</div>
+<!-- Particles -->
+<canvas id="particles-canvas"></canvas>
+<!-- Fixed Cards -->
+<div id="fixed-cards">
+  <div class="grid">
+    <div class="card">
+      <h3>Audit &amp; Diagnostic IA</h3>
+      <p>Évaluation approfondie de vos processus métiers pour identifier les automatisations à fort retour sur investissement. À l'issue, un rapport détaillé et priorisé est remis aux décideurs.</p>
+    </div>
+    <div class="card">
+      <h3>Déploiement &amp; Formation</h3>
+      <p>Intégration d'outils IA sur mesure — assistants conversationnels, automatisation des tâches, génération de contenu — et montée en compétences de vos équipes, sans prérequis technique.</p>
+    </div>
+    <div class="card">
+      <h3>Conformité RGPD &amp; Support</h3>
+      <p>Mise en conformité réglementaire de vos usages IA et contrat d'assistance continu : veille technologique, mises à jour et accompagnement dans la durée.</p>
+    </div>
+  </div>
+</div>
+<!-- Navigation -->
+<nav>
+  <div style="display:flex;align-items:center;gap:2rem;">
+    <span class="logo">DIAS</span>
+    <div class="nav-links">
+      <a href="https://digijohnia.solutions/#expertise">Solutions</a>
+      <a href="https://digijohnia.solutions/#formation">Formation</a>
+      <a href="https://digijohnia.solutions/#contact">Contact</a>
+    </div>
+  </div>
+  <div class="social">
+    <a href="https://www.linkedin.com/in/johndimosi" target="_blank" rel="noopener" aria-label="LinkedIn"><svg fill="currentColor" viewBox="0 0 24 24"><path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/></svg></a>
+    <a href="mailto:digijohn@live.fr" aria-label="Email"><svg fill="currentColor" viewBox="0 0 24 24"><path d="M12 12.713l-11.985-9.713h23.97l-11.985 9.713zm0 2.574l-12-9.725v15.438h24v-15.438l-12 9.725z"/></svg></a>
+  </div>
+</nav>
+<!-- Main Content -->
+<div id="content">
+  <!-- Section 1: Hero -->
+  <section id="hero">
+    <div class="gradient-overlay"></div>
+    <div class="content">
+      <p class="subtitle">Notre mission :</p>
+      <h1>
+        Mettre l'intelligence artificielle au service des
+        <span class="underlined"><span class="line"></span><span>entreprises françaises</span></span>.
+      </h1>
+      <div class="ctas">
+        <div class="code-box">
+          <span class="prompt">&gt;</span>
+          <code>Conseil · Déploiement · Formation · RGPD</code>
+        </div>
+        <a href="https://digijohnia.solutions/#contact" class="cta-btn">Diagnostic IA offert <span>&rarr;</span></a>
+      </div>
+    </div>
+    <div class="bounce-arrow">
+      <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M19.5 8.25l-7.5 7.5-7.5-7.5"/></svg>
+    </div>
+  </section>
+  <!-- Spacer -->
+  <div style="height:150vh;"></div>
+  <!-- Cards Trigger Zone -->
+  <div id="cards-trigger" style="height:200vh;"></div>
+  <!-- Spacer -->
+  <div style="height:100vh;"></div>
+  <!-- Section 3 -->
+  <section id="section-three">
+    <div class="inner" id="section-three-inner">
+      <p>Partout en France — à distance &amp; sur site</p>
+      <h2>DIAS</h2>
+    </div>
+  </section>
+</div>
+<script>
+(function() {
+  // ===================== SCROLL VIDEO =====================
+  const VIDEO_URL = 'https://d8j0ntlcm91z4.cloudfront.net/user_38xzZboKViGWJOttwIXH07lWA1P/hf_20260616_212935_bbf608da-62d1-4f25-9be4-c346e4d09cc8.mp4';
+  const canvas = document.getElementById('video-canvas');
+  const videoEl = document.getElementById('video-fallback');
+  const ctx = canvas.getContext('2d');
+  let frames = [];
+  let framesReady = false;
+  let lastFrameIndex = -1;
+  let videoSeeking = false;
+  function resizeCanvas() {
+    const dpr = Math.min(devicePixelRatio, 2);
+    const rect = canvas.getBoundingClientRect();
+    const w = Math.round(rect.width * dpr);
+    const h = Math.round(rect.height * dpr);
+    if (canvas.width !== w || canvas.height !== h) {
+      canvas.width = w;
+      canvas.height = h;
     }
-
-    function Play({ className }) {
-      return (
-        <svg className={className} viewBox="0 0 24 24" fill="currentColor"
-          xmlns="http://www.w3.org/2000/svg">
-          <polygon points="6 4 20 12 6 20 6 4" />
-        </svg>
-      );
-    }
-
-    function ClockIcon({ className }) {
-      return (
-        <svg className={className} width="28" height="28" viewBox="0 0 24 24" fill="none"
-          stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"
-          xmlns="http://www.w3.org/2000/svg">
-          <circle cx="12" cy="12" r="9" />
-          <path d="M12 7v5l3.5 2" />
-        </svg>
-      );
-    }
-
-    function GlobeIcon({ className }) {
-      return (
-        <svg className={className} width="28" height="28" viewBox="0 0 24 24" fill="none"
-          stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"
-          xmlns="http://www.w3.org/2000/svg">
-          <circle cx="12" cy="12" r="9" />
-          <path d="M3 12h18" />
-          <path d="M12 3c2.5 2.5 3.8 5.7 3.8 9s-1.3 6.5-3.8 9c-2.5-2.5-3.8-5.7-3.8-9s1.3-6.5 3.8-9Z" />
-        </svg>
-      );
-    }
-
-    function MaterialIcon({ path, className }) {
-      return (
-        <svg className={className} viewBox="0 0 24 24" fill="currentColor"
-          xmlns="http://www.w3.org/2000/svg">
-          <path d={path} />
-        </svg>
-      );
-    }
-
-    // DIAS monogramme — "D" dégradé violet→bleu, nodes circuit, lueur néon
-    function DiasLogo({ className }) {
-      return (
-        <svg className={className} viewBox="0 0 36 36" fill="none" xmlns="http://www.w3.org/2000/svg">
-          <defs>
-            <linearGradient id="diasGrad" x1="6" y1="6" x2="30" y2="30" gradientUnits="userSpaceOnUse">
-              <stop stopColor="#9B4DCA" />
-              <stop offset="1" stopColor="#1E90FF" />
-            </linearGradient>
-          </defs>
-          <circle cx="4" cy="18" r="1.5" fill="#1E90FF" />
-          <circle cx="32" cy="18" r="1.5" fill="#1E90FF" />
-          <path d="M5.5 18H8M28 18h2.5" stroke="#1E90FF" strokeWidth="1" strokeLinecap="round" opacity="0.6" />
-          <text x="18" y="25.5" textAnchor="middle" fontFamily="Instrument Serif, serif"
-            fontStyle="italic" fontSize="23" fill="url(#diasGrad)">D</text>
-        </svg>
-      );
-    }
-
-    window.ArrowUpRight = ArrowUpRight;
-    window.Play = Play;
-    window.ClockIcon = ClockIcon;
-    window.GlobeIcon = GlobeIcon;
-    window.MaterialIcon = MaterialIcon;
-    window.DiasLogo = DiasLogo;
-  </script>
-
-  <!-- ====================== FadingVideo ====================== -->
-  <script type="text/babel">
-    const { useRef, useEffect } = React;
-
-    function FadingVideo({ src, className, style }) {
-      const videoRef = useRef(null);
-      const rafRef = useRef(null);
-      const fadingOutRef = useRef(false);
-
-      const FADE_MS = 500;
-      const FADE_OUT_LEAD = 0.55;
-
-      useEffect(() => {
-        const video = videoRef.current;
-        if (!video) return;
-
-        const fadeTo = (target, duration) => {
-          if (rafRef.current) cancelAnimationFrame(rafRef.current);
-          const start = parseFloat(video.style.opacity) || 0;
-          const startTime = performance.now();
-          const tick = (now) => {
-            const elapsed = now - startTime;
-            const t = duration > 0 ? Math.min(elapsed / duration, 1) : 1;
-            const value = start + (target - start) * t;
-            video.style.opacity = String(value);
-            if (t < 1) {
-              rafRef.current = requestAnimationFrame(tick);
-            } else {
-              rafRef.current = null;
-            }
-          };
-          rafRef.current = requestAnimationFrame(tick);
-        };
-
-        const onLoadedData = () => {
-          video.style.opacity = "0";
-          const p = video.play();
-          if (p && p.catch) p.catch(() => {});
-          fadeTo(1, FADE_MS);
-        };
-
-        const onTimeUpdate = () => {
-          if (fadingOutRef.current) return;
-          const dur = video.duration;
-          if (!dur || isNaN(dur)) return;
-          const remaining = dur - video.currentTime;
-          if (remaining <= FADE_OUT_LEAD && remaining > 0) {
-            fadingOutRef.current = true;
-            fadeTo(0, FADE_MS);
-          }
-        };
-
-        const onEnded = () => {
-          video.style.opacity = "0";
-          setTimeout(() => {
-            video.currentTime = 0;
-            const p = video.play();
-            if (p && p.catch) p.catch(() => {});
-            fadingOutRef.current = false;
-            fadeTo(1, FADE_MS);
-          }, 100);
-        };
-
-        video.addEventListener("loadeddata", onLoadedData);
-        video.addEventListener("timeupdate", onTimeUpdate);
-        video.addEventListener("ended", onEnded);
-
-        return () => {
-          if (rafRef.current) cancelAnimationFrame(rafRef.current);
-          video.removeEventListener("loadeddata", onLoadedData);
-          video.removeEventListener("timeupdate", onTimeUpdate);
-          video.removeEventListener("ended", onEnded);
-        };
-      }, []);
-
-      return (
-        <video
-          ref={videoRef}
-          className={className}
-          style={{ ...style, opacity: 0 }}
-          autoPlay
-          muted
-          playsInline
-          preload="auto"
-          src={src}
-        />
-      );
-    }
-
-    window.FadingVideo = FadingVideo;
-  </script>
-
-  <!-- ====================== BlurText ====================== -->
-  <script type="text/babel">
-    function BlurText({ text, className }) {
-      const ref = React.useRef(null);
-      const [inView, setInView] = React.useState(false);
-      const motion = window.Motion.motion;
-
-      React.useEffect(() => {
-        const el = ref.current;
-        if (!el) return;
-        const observer = new IntersectionObserver(
-          (entries) => {
-            entries.forEach((entry) => {
-              if (entry.isIntersecting) {
-                setInView(true);
-                observer.unobserve(el);
-              }
-            });
-          },
-          { threshold: 0.1 }
-        );
-        observer.observe(el);
-        return () => observer.disconnect();
-      }, []);
-
-      const words = text.split(" ");
-
-      return (
-        <p
-          ref={ref}
-          className={className}
-          style={{
-            display: "flex",
-            flexWrap: "wrap",
-            justifyContent: "center",
-            rowGap: "0.1em",
-          }}
-        >
-          {words.map((word, i) => (
-            <motion.span
-              key={i}
-              initial={{ filter: "blur(10px)", opacity: 0, y: 50 }}
-              animate={
-                inView
-                  ? {
-                      filter: ["blur(10px)", "blur(5px)", "blur(0px)"],
-                      opacity: [0, 0.5, 1],
-                      y: [50, -5, 0],
-                    }
-                  : {}
-              }
-              transition={{
-                duration: 0.7,
-                times: [0, 0.5, 1],
-                ease: "easeOut",
-                delay: (i * 100) / 1000,
-              }}
-              style={{ display: "inline-block", marginRight: "0.28em" }}
-            >
-              {word}
-            </motion.span>
-          ))}
-        </p>
-      );
-    }
-
-    window.BlurText = BlurText;
-  </script>
-
-  <!-- ====================== Navbar ====================== -->
-  <script type="text/babel">
-    function Navbar() {
-      const ArrowUpRight = window.ArrowUpRight;
-      const DiasLogo = window.DiasLogo;
-      const links = [
-        { label: "Accueil", href: "https://digijohnia.solutions/" },
-        { label: "Expertise", href: "https://digijohnia.solutions/#expertise" },
-        { label: "Formation", href: "https://digijohnia.solutions/#formation" },
-        { label: "Conseil", href: "https://digijohnia.solutions/#expertise" },
-        { label: "Contact", href: "https://digijohnia.solutions/#contact" },
-      ];
-
-      return (
-        <nav className="fixed top-4 left-0 right-0 z-50 px-8 lg:px-16">
-          <div className="flex items-center justify-between">
-            {/* Logo DIAS */}
-            <div className="liquid-glass rounded-full w-12 h-12 flex items-center justify-center">
-              <DiasLogo className="h-7 w-7 dias-glow" />
-            </div>
-
-            {/* Center nav (desktop) */}
-            <div className="hidden md:flex items-center liquid-glass rounded-full px-1.5 py-1.5">
-              {links.map((link) => (
-                <a
-                  key={link.label}
-                  href={link.href}
-                  className="px-3 py-2 text-sm font-medium text-white/90 font-body whitespace-nowrap"
-                >
-                  {link.label}
-                </a>
-              ))}
-              <a
-                href="https://digijohnia.solutions/#contact"
-                className="dias-cta dias-cta-glow ml-1 flex items-center gap-1 rounded-full text-white px-4 py-2 text-sm font-medium whitespace-nowrap"
-              >
-                Diagnostic offert
-                <ArrowUpRight className="h-4 w-4" />
-              </a>
-            </div>
-
-            {/* Right spacer to balance the logo */}
-            <div className="w-12 h-12 invisible" aria-hidden="true"></div>
-          </div>
-        </nav>
-      );
-    }
-
-    window.Navbar = Navbar;
-  </script>
-
-  <!-- ====================== Hero ====================== -->
-  <script type="text/babel">
-    function Hero() {
-      const motion = window.Motion.motion;
-      const FadingVideo = window.FadingVideo;
-      const BlurText = window.BlurText;
-      const Navbar = window.Navbar;
-      const ArrowUpRight = window.ArrowUpRight;
-      const Play = window.Play;
-      const ClockIcon = window.ClockIcon;
-      const GlobeIcon = window.GlobeIcon;
-
-      const fadeUp = (delay) => ({
-        initial: { filter: "blur(10px)", opacity: 0, y: 20 },
-        animate: { filter: "blur(0px)", opacity: 1, y: 0 },
-        transition: { duration: 0.8, ease: "easeOut", delay },
+    lastFrameIndex = -1;
+  }
+  async function extractFrames() {
+    try {
+      const response = await fetch(VIDEO_URL, { mode: 'cors' });
+      const blob = await response.blob();
+      const objectUrl = URL.createObjectURL(blob);
+      const video = document.createElement('video');
+      video.muted = true;
+      video.playsInline = true;
+      video.crossOrigin = 'anonymous';
+      video.preload = 'auto';
+      video.src = objectUrl;
+      await new Promise((resolve, reject) => {
+        video.onloadedmetadata = () => resolve();
+        video.onerror = () => reject();
+        setTimeout(() => reject(), 15000);
       });
-
-      const filieres = ["Maintenance", "BTP", "Logistique", "Tertiaire", "Industrie"];
-
-      return (
-        <section className="relative min-h-screen w-full overflow-hidden bg-dias-navy">
-          <FadingVideo
-            src="https://d8j0ntlcm91z4.cloudfront.net/user_38xzZboKViGWJOttwIXH07lWA1P/hf_20260418_080021_d598092b-c4c2-4e53-8e46-94cf9064cd50.mp4"
-            className="absolute left-1/2 top-0 -translate-x-1/2 object-cover object-top z-0"
-            style={{ width: "120%", height: "120%" }}
-          />
-
-          <Navbar />
-
-          <div className="relative z-10 flex flex-col min-h-screen">
-            {/* Hero content */}
-            <div className="flex-1 flex flex-col items-center justify-center text-center pt-24 px-4">
-              {/* Badge */}
-              <motion.div {...fadeUp(0.4)}>
-                <div className="liquid-glass rounded-full inline-flex items-center gap-2 p-1">
-                  <span className="rounded-full bg-dias-blue text-white px-3 py-1 text-xs font-semibold">En direct</span>
-                  <span className="text-sm text-white/90 pr-3">Formation IA de vive voix — sans jargon anglais</span>
-                </div>
-              </motion.div>
-
-              {/* Headline */}
-              <div className="mt-6 w-full flex justify-center">
-                <BlurText
-                  text="Explorez l'IA Bien au-delà du Jargon"
-                  className="text-6xl md:text-7xl lg:text-[5.5rem] font-heading italic text-white leading-[0.8] max-w-2xl mx-auto justify-center tracking-[-4px]"
-                />
-              </div>
-
-              {/* Subheading */}
-              <motion.p
-                {...fadeUp(0.8)}
-                className="mt-4 text-sm md:text-base text-white max-w-2xl font-body font-light leading-tight"
-              >
-                J'accompagne PME et organismes de formation à intégrer l'intelligence artificielle
-                concrètement — expliquée en français, sans jargon, pour des résultats mesurables
-                rapidement. Diagnostic offert, sans engagement.
-              </motion.p>
-
-              {/* CTAs */}
-              <motion.div {...fadeUp(1.1)} className="flex items-center gap-6 mt-6">
-                <a
-                  href="https://digijohnia.solutions/#contact"
-                  className="liquid-glass-strong dias-cta dias-cta-glow rounded-full px-5 py-2.5 text-sm font-medium text-white inline-flex items-center gap-2"
-                >
-                  Diagnostic IA offert
-                  <ArrowUpRight className="h-5 w-5" />
-                </a>
-                <a href="https://digijohnia.solutions/#formation" className="inline-flex items-center gap-2 text-sm font-medium text-white">
-                  Voir nos formations
-                  <Play className="h-4 w-4" />
-                </a>
-              </motion.div>
-
-              {/* Stats */}
-              <motion.div {...fadeUp(1.3)} className="flex items-stretch gap-4 mt-8">
-                <div className="liquid-glass p-5 w-[220px] rounded-[1.25rem] flex flex-col justify-between text-left">
-                  <ClockIcon className="text-dias-cyan dias-glow" />
-                  <div>
-                    <div className="font-heading italic text-white text-4xl tracking-[-1px] leading-none">20 h</div>
-                    <div className="text-xs text-white font-body font-light mt-2">Module IA co-construit, en direct</div>
-                  </div>
-                </div>
-                <div className="liquid-glass p-5 w-[220px] rounded-[1.25rem] flex flex-col justify-between text-left">
-                  <GlobeIcon className="text-dias-cyan dias-glow" />
-                  <div>
-                    <div className="font-heading italic text-white text-4xl tracking-[-1px] leading-none">100 %</div>
-                    <div className="text-xs text-white font-body font-light mt-2">Sur mesure, adapté à votre filière</div>
-                  </div>
-                </div>
-              </motion.div>
-            </div>
-
-            {/* Filières */}
-            <motion.div {...fadeUp(1.4)} className="flex flex-col items-center gap-4 pb-8 px-4">
-              <span className="liquid-glass rounded-full px-3.5 py-1 text-xs font-medium text-white">
-                Au service des PME et organismes de formation francophones
-              </span>
-              <div className="flex flex-wrap items-center justify-center gap-12 md:gap-16">
-                {filieres.map((name) => (
-                  <span
-                    key={name}
-                    className="font-heading italic text-white text-2xl md:text-3xl tracking-tight"
-                  >
-                    {name}
-                  </span>
-                ))}
-              </div>
-            </motion.div>
-          </div>
-        </section>
-      );
+      const scale = Math.min(1, 1280 / video.videoWidth);
+      const scaledWidth = Math.round(video.videoWidth * scale);
+      const scaledHeight = Math.round(video.videoHeight * scale);
+      const frameCount = Math.max(30, Math.min(120, Math.round(video.duration * 24)));
+      for (let i = 0; i < frameCount; i++) {
+        const time = (i / (frameCount - 1)) * (video.duration - 0.05);
+        video.currentTime = time;
+        await new Promise((resolve, reject) => {
+          const onSeeked = () => { video.removeEventListener('seeked', onSeeked); resolve(); };
+          video.addEventListener('seeked', onSeeked);
+          setTimeout(() => { video.removeEventListener('seeked', onSeeked); reject(); }, 3000);
+        });
+        const bitmap = await createImageBitmap(video, { resizeWidth: scaledWidth, resizeHeight: scaledHeight });
+        frames.push(bitmap);
+      }
+      if (frames.length > 0) {
+        framesReady = true;
+        canvas.style.visibility = 'visible';
+        videoEl.style.display = 'none';
+      }
+      URL.revokeObjectURL(objectUrl);
+    } catch(e) { /* fallback to video seeking */ }
+  }
+  function getScrollBounds() {
+    const vh = window.innerHeight;
+    return { start: vh * 0.5, end: document.documentElement.scrollHeight - vh };
+  }
+  function getProgress() {
+    const { start, end } = getScrollBounds();
+    const range = end - start;
+    if (range <= 0) return 0;
+    return Math.max(0, Math.min(1, (window.scrollY - start) / range));
+  }
+  function drawFrame(frame) {
+    const cw = canvas.width, ch = canvas.height;
+    const s = Math.max(cw / frame.width, ch / frame.height);
+    const dw = frame.width * s, dh = frame.height * s;
+    ctx.drawImage(frame, (cw - dw) / 2, (ch - dh) / 2, dw, dh);
+  }
+  function videoTick() {
+    const progress = getProgress();
+    if (framesReady && frames.length > 0) {
+      const idx = Math.round(progress * (frames.length - 1));
+      if (idx !== lastFrameIndex) {
+        lastFrameIndex = idx;
+        if (frames[idx]) drawFrame(frames[idx]);
+      }
+    } else if (videoEl.duration && isFinite(videoEl.duration) && videoEl.readyState >= 1) {
+      const target = progress * videoEl.duration;
+      if (!videoSeeking && Math.abs(videoEl.currentTime - target) > 0.001) {
+        videoSeeking = true;
+        videoEl.currentTime = target;
+      }
     }
-
-    window.Hero = Hero;
-  </script>
-
-  <!-- ====================== Expertise (ex-Capabilities) ====================== -->
-  <script type="text/babel">
-    function Capabilities() {
-      const MaterialIcon = window.MaterialIcon;
-      const FadingVideo = window.FadingVideo;
-
-      const cards = [
-        {
-          icon: "M12 3 1 9l4 2.18v6L12 21l7-3.82v-6l2-1.09V17h2V9L12 3Zm6.82 6L12 12.72 5.18 9 12 5.28 18.82 9ZM17 15.99l-5 2.73-5-2.73v-3.72L12 15l5-2.73v3.72Z",
-          tags: ["20 h en direct", "Sans jargon", "Co-construit", "Toute filière"],
-          title: "Formation IA sur mesure",
-          body:
-            "Modules de 20h construits autour des filières réelles de votre centre — maintenance, BTP, logistique, tertiaire. En direct, sans jargon, pour des apprenants non-techniciens.",
-        },
-        {
-          icon: "M3 17v2h6v-2H3ZM3 5v2h10V5H3Zm10 16v-2h8v-2h-8v-2h-2v6h2ZM7 9v2H3v2h4v2h2V9H7Zm14 4v-2H11v2h10Zm-6-4h2V7h4V5h-4V3h-2v6Z",
-          tags: ["Audit process", "Automatisation", "ROI mesurable", "RGPD"],
-          title: "Conseil & déploiement IA",
-          body:
-            "Audit de vos processus, identification des gains IA actionnables, automatisation des tâches répétitives. ROI mesurable, mise en œuvre progressive, conformité RGPD.",
-        },
-        {
-          icon: "M9 21c0 .55.45 1 1 1h4c.55 0 1-.45 1-1v-1H9v1Zm3-19C8.14 2 5 5.14 5 9c0 2.38 1.19 4.47 3 5.74V17c0 .55.45 1 1 1h6c.55 0 1-.45 1-1v-2.26c1.81-1.27 3-3.36 3-5.74 0-3.86-3.14-7-7-7Z",
-          tags: ["45 minutes", "Sans engagement", "3 gains concrets", "Offert"],
-          title: "Diagnostic IA offert",
-          body:
-            "Un entretien de 45 minutes pour identifier vos 3 premiers gains IA concrets. Aucun engagement, aucune vente — juste une conversation entre professionnels.",
-        },
-      ];
-
-      return (
-        <section className="relative min-h-screen w-full overflow-hidden bg-dias-navy">
-          <FadingVideo
-            src="https://d8j0ntlcm91z4.cloudfront.net/user_38xzZboKViGWJOttwIXH07lWA1P/hf_20260418_094631_d30ab262-45ee-4b7d-99f3-5d5848c8ef13.mp4"
-            className="absolute inset-0 w-full h-full object-cover z-0"
-          />
-
-          <div className="relative z-10 px-8 md:px-16 lg:px-20 pt-24 pb-10 flex flex-col min-h-screen">
-            {/* Header */}
-            <div className="mb-auto">
-              <p className="text-sm font-body text-white/80 mb-6">// Expertise</p>
-              <h2 className="font-heading italic text-white text-6xl md:text-7xl lg:text-[6rem] leading-[0.9] tracking-[-3px]">
-                Le terrain,
-                <br />
-                pas la théorie.
-              </h2>
-            </div>
-
-            {/* Cards */}
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mt-16">
-              {cards.map((card) => (
-                <div
-                  key={card.title}
-                  className="liquid-glass rounded-[1.25rem] p-6 min-h-[360px] flex flex-col"
-                >
-                  <div className="flex items-start justify-between gap-4">
-                    <div className="liquid-glass rounded-[0.75rem] w-11 h-11 flex items-center justify-center shrink-0">
-                      <MaterialIcon path={card.icon} className="h-6 w-6 text-dias-cyan dias-glow" />
-                    </div>
-                    <div className="flex flex-wrap justify-end gap-1.5 max-w-[70%]">
-                      {card.tags.map((tag) => (
-                        <span
-                          key={tag}
-                          className="liquid-glass rounded-full px-3 py-1 text-[11px] text-white/90 font-body whitespace-nowrap"
-                        >
-                          {tag}
-                        </span>
-                      ))}
-                    </div>
-                  </div>
-
-                  <div className="flex-1"></div>
-
-                  <div className="mt-6">
-                    <h3 className="font-heading italic text-white text-3xl md:text-4xl tracking-[-1px] leading-none">
-                      {card.title}
-                    </h3>
-                    <p className="mt-3 text-sm text-white/90 font-body font-light leading-snug max-w-[32ch]">
-                      {card.body}
-                    </p>
-                  </div>
-                </div>
-              ))}
-            </div>
-          </div>
-        </section>
-      );
+    requestAnimationFrame(videoTick);
+  }
+  videoEl.addEventListener('seeked', () => { videoSeeking = false; });
+  videoEl.addEventListener('stalled', () => { videoSeeking = false; });
+  videoEl.addEventListener('loadeddata', () => { videoEl.currentTime = 0; });
+  canvas.style.visibility = 'hidden';
+  resizeCanvas();
+  window.addEventListener('resize', resizeCanvas);
+  requestAnimationFrame(videoTick);
+  extractFrames();
+  // ===================== PARTICLES =====================
+  const pCanvas = document.getElementById('particles-canvas');
+  const pCtx = pCanvas.getContext('2d');
+  let particles = [];
+  function resizeParticles() {
+    pCanvas.width = window.innerWidth;
+    pCanvas.height = window.innerHeight;
+    createParticles();
+  }
+  function createParticles() {
+    particles = [];
+    const count = Math.floor((pCanvas.width * pCanvas.height) / 12000);
+    for (let i = 0; i < count; i++) {
+      particles.push({
+        x: Math.random() * pCanvas.width,
+        y: Math.random() * pCanvas.height,
+        vx: (Math.random() - 0.5) * 0.3,
+        vy: (Math.random() - 0.5) * 0.3,
+        size: Math.random() * 1.5 + 0.5,
+        opacity: Math.random() * 0.6 + 0.2
+      });
     }
-
-    window.Capabilities = Capabilities;
-  </script>
-
-  <!-- ====================== App ====================== -->
-  <script type="text/babel">
-    function App() {
-      const Hero = window.Hero;
-      const Capabilities = window.Capabilities;
-      return (
-        <React.Fragment>
-          <Hero />
-          <Capabilities />
-        </React.Fragment>
-      );
+  }
+  function animateParticles() {
+    pCtx.clearRect(0, 0, pCanvas.width, pCanvas.height);
+    for (const p of particles) {
+      p.x += p.vx; p.y += p.vy;
+      if (p.x < 0) p.x = pCanvas.width;
+      if (p.x > pCanvas.width) p.x = 0;
+      if (p.y < 0) p.y = pCanvas.height;
+      if (p.y > pCanvas.height) p.y = 0;
+      pCtx.beginPath();
+      pCtx.arc(p.x, p.y, p.size, 0, Math.PI * 2);
+      pCtx.fillStyle = `rgba(255,255,255,${p.opacity})`;
+      pCtx.fill();
     }
-
-    window.App = App;
-
-    const root = ReactDOM.createRoot(document.getElementById("root"));
-    root.render(<App />);
-  </script>
+    requestAnimationFrame(animateParticles);
+  }
+  resizeParticles();
+  window.addEventListener('resize', resizeParticles);
+  animateParticles();
+  // ===================== HERO FADE =====================
+  function updateHeroOpacity() {
+    const fade = Math.max(0, 1 - window.scrollY / (window.innerHeight * 0.3));
+    document.getElementById('hero').style.opacity = fade;
+  }
+  window.addEventListener('scroll', updateHeroOpacity, { passive: true });
+  // ===================== FIXED CARDS =====================
+  const fixedCards = document.getElementById('fixed-cards');
+  const cardsGrid = fixedCards.querySelector('.grid');
+  function tickCards() {
+    const trigger = document.getElementById('cards-trigger');
+    const rect = trigger.getBoundingClientRect();
+    const triggerTop = rect.top + window.scrollY;
+    const triggerHeight = rect.height;
+    const scrollY = window.scrollY;
+    const vh = window.innerHeight;
+    const start = triggerTop - vh * 0.5;
+    const end = triggerTop + triggerHeight - vh * 0.3;
+    const range = end - start;
+    let progress = range > 0 ? (scrollY - start) / range : 0;
+    progress = Math.max(0, Math.min(1, progress));
+    const isActive = scrollY >= start - vh * 0.2 && scrollY <= end + vh * 0.3;
+    const fadeIn = Math.min(1, Math.max(0, (scrollY - (start - vh * 0.2)) / (vh * 0.2)));
+    const fadeOut = Math.min(1, Math.max(0, (end + vh * 0.3 - scrollY) / (vh * 0.3)));
+    const containerOpacity = isActive ? Math.min(fadeIn, fadeOut) : 0;
+    fixedCards.style.opacity = containerOpacity;
+    fixedCards.style.pointerEvents = containerOpacity > 0.1 ? 'auto' : 'none';
+    const isMobile = window.innerWidth < 768;
+    const revealPct = progress * 130;
+    if (isMobile) {
+      cardsGrid.style.maskImage = `linear-gradient(to bottom, black ${revealPct}%, transparent ${revealPct + 20}%)`;
+      cardsGrid.style.webkitMaskImage = `linear-gradient(to bottom, black ${revealPct}%, transparent ${revealPct + 20}%)`;
+    } else {
+      cardsGrid.style.maskImage = `linear-gradient(to right, black ${revealPct}%, transparent ${revealPct + 15}%)`;
+      cardsGrid.style.webkitMaskImage = `linear-gradient(to right, black ${revealPct}%, transparent ${revealPct + 15}%)`;
+    }
+    requestAnimationFrame(tickCards);
+  }
+  requestAnimationFrame(tickCards);
+  // ===================== SECTION 3 INTERSECTION =====================
+  const sectionThreeInner = document.getElementById('section-three-inner');
+  const observer = new IntersectionObserver(([entry]) => {
+    if (entry.isIntersecting) {
+      sectionThreeInner.classList.add('visible');
+      observer.unobserve(sectionThreeInner);
+    }
+  }, { threshold: 0.15 });
+  observer.observe(sectionThreeInner);
+})();
+</script>
 </body>
 </html>
