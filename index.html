@@ -19,7 +19,7 @@
 <meta name="twitter:image" content="https://digijohnia.solutions/og-image.jpg" />
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600&family=Figtree:wght@400;500;600;700&display=swap" rel="stylesheet" />
 <style>
 *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
 html { scroll-behavior: smooth; }
@@ -125,22 +125,195 @@ footer { position: relative; z-index: 2; text-align: center; padding: 3rem 2.5re
   .spec { grid-template-columns: 1fr 1fr; gap: 1rem; }
 }
 </style>
+
+<!-- ══════════════════════════════════════════════════════════════════════
+     CHARTE DIAS — mode nuit
+     La landing reste en fond sombre, c'est délibéré : le site principal
+     convainc en fond clair, la landing prouve et outille en fond nuit.
+     Mais elle quitte le noir générique à champ d'étoiles pour la nuit
+     sous canopée du système de design, avec Fraunces et Figtree.
+     Ce bloc est chargé après les styles d'origine et les surcharge.
+     ══════════════════════════════════════════════════════════════════════ -->
+<style>
+  :root {
+    --dias-fond: #061410;
+    --dias-fond-2: #04100c;
+    --dias-surface: #0c2118;
+    --dias-texte: #fbf8f2;
+    --dias-texte-doux: #cfc4ae;
+    --dias-trait: #1f4433;
+    --dias-cuivre: #b87333;
+    --dias-cuivre-clair: #dba066;
+    --dias-patine: #4e9e86;
+    --dias-patine-clair: #63b79e;
+  }
+
+  body {
+    font-family: 'Figtree', system-ui, sans-serif;
+    background: var(--dias-fond);
+    color: var(--dias-texte);
+  }
+
+  h1, h2, h3, h4, blockquote {
+    font-family: 'Fraunces', Georgia, serif;
+    font-weight: 500;
+    letter-spacing: -0.01em;
+  }
+  h1 { font-weight: 400; }
+
+  /* Halos cuivre et patine à la place du champ d'étoiles. */
+  body::before,
+  body::after {
+    content: '';
+    position: fixed;
+    border-radius: 50%;
+    pointer-events: none;
+    z-index: 0;
+    filter: blur(90px);
+  }
+  body::before {
+    top: -160px; right: -140px; width: 520px; height: 520px;
+    background: rgba(184, 115, 51, 0.28);
+  }
+  body::after {
+    top: 180px; right: 80px; width: 360px; height: 360px;
+    background: rgba(78, 158, 134, 0.2);
+  }
+
+  nav { background: linear-gradient(to bottom, rgba(6, 20, 16, 0.85), transparent); }
+  nav .logo { font-family: 'Fraunces', Georgia, serif; font-weight: 500; }
+  nav .nav-links a, nav .social a { color: var(--dias-texte-doux); }
+  nav .nav-links a:hover, nav .social a:hover { color: var(--dias-cuivre-clair); }
+
+  .kicker { color: var(--dias-cuivre-clair) !important; }
+  .lead, .step p, .card p { color: var(--dias-texte-doux); }
+
+  .cta-btn,
+  .contact-btn {
+    border-color: rgba(184, 115, 51, 0.5) !important;
+    transition: background-color 0.3s, border-color 0.3s, color 0.3s;
+  }
+  .cta-btn {
+    background: var(--dias-cuivre) !important;
+    color: #061410 !important;
+    font-weight: 600;
+  }
+  .cta-btn:hover { background: var(--dias-patine) !important; }
+  .contact-btn:hover {
+    border-color: var(--dias-patine) !important;
+    color: var(--dias-patine-clair) !important;
+  }
+
+  /* ---- Section catalogue ---- */
+  #catalogue { position: relative; z-index: 1; }
+  #catalogue .modules {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 1.25rem;
+    margin-top: 2.75rem;
+  }
+  .mod {
+    display: flex;
+    flex-direction: column;
+    background: rgba(251, 248, 242, 0.04);
+    border: 1px solid var(--dias-trait);
+    border-radius: 6px;
+    padding: 1.5rem;
+    transition: background 0.22s, border-color 0.22s, transform 0.22s;
+  }
+  .mod:hover {
+    background: rgba(251, 248, 242, 0.07);
+    border-color: var(--dias-cuivre);
+    transform: translateY(-3px);
+  }
+  .mod-tete {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: 1rem;
+  }
+  .mod-num {
+    font-family: 'Fraunces', Georgia, serif;
+    font-size: 1.75rem;
+    line-height: 1;
+    color: var(--dias-cuivre-clair);
+  }
+  .mod-duree {
+    font-size: 0.72rem;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--dias-cuivre-clair);
+    white-space: nowrap;
+  }
+  .mod h3 { font-size: 1.2rem; margin: 0.85rem 0 0.5rem; color: var(--dias-texte); }
+  .mod p.acc { font-size: 0.95rem; line-height: 1.55; color: var(--dias-texte-doux); flex: 1; }
+  .mod .livrable {
+    margin-top: 1rem;
+    padding: 0.7rem 0.9rem;
+    border-left: 3px solid var(--dias-patine);
+    border-radius: 0 4px 4px 0;
+    background: rgba(78, 158, 134, 0.1);
+    font-size: 0.92rem;
+    font-weight: 600;
+    line-height: 1.5;
+    color: var(--dias-patine-clair);
+  }
+  .mod .livrable b {
+    display: block;
+    margin-bottom: 0.2rem;
+    font-size: 0.68rem;
+    letter-spacing: 0.13em;
+    text-transform: uppercase;
+  }
+  .mod .fiche {
+    margin-top: 1rem;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.45rem;
+    padding: 0.6rem 1rem;
+    border: 1px solid var(--dias-trait);
+    border-radius: 8px;
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: var(--dias-texte);
+    text-decoration: none;
+    transition: border-color 0.22s, color 0.22s;
+  }
+  .mod .fiche:hover { border-color: var(--dias-cuivre); color: var(--dias-cuivre-clair); }
+
+  footer {
+    position: relative;
+    z-index: 1;
+    border-top: 1px solid var(--dias-trait);
+    color: var(--dias-texte-doux);
+  }
+  footer a { color: var(--dias-texte-doux); }
+  footer a:hover { color: var(--dias-cuivre-clair); }
+
+  @media (prefers-reduced-motion: reduce) {
+    .mod, .cta-btn, .contact-btn { transition: none; }
+  }
+</style>
 </head>
 <body>
 <!-- Fond 3D (logo DIAS) — injecté par bg3d.js -->
 <!-- Navigation -->
 <nav>
   <div style="display:flex;align-items:center;gap:2rem;">
-    <a href="#hero" class="logo">DIAS</a>
+    <a href="https://digijohnia.solutions" class="logo" aria-label="DIAS — aller au site principal">DIAS</a>
     <div class="nav-links">
       <a href="#expertise">Expertise</a>
-      <a href="#formation">Formation</a>
+      <a href="#catalogue">Catalogue</a>
+      <a href="/outils/">Diagnostic</a>
+      <a href="https://digijohnia.solutions/realisations">Réalisations</a>
+      <a href="https://digijohnia.solutions/tarifs">Tarifs</a>
       <a href="#contact">Contact</a>
     </div>
   </div>
   <div class="social">
     <a href="https://www.linkedin.com/in/john-dimosi-b89966312" target="_blank" rel="noopener" aria-label="LinkedIn"><svg fill="currentColor" viewBox="0 0 24 24"><path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/></svg></a>
-    <a href="mailto:johntapioka@gmail.com" aria-label="Email"><svg fill="currentColor" viewBox="0 0 24 24"><path d="M12 12.713l-11.985-9.713h23.97l-11.985 9.713zm0 2.574l-12-9.725v15.438h24v-15.438l-12 9.725z"/></svg></a>
+    <a href="mailto:contact@digijohnia.solutions" aria-label="Email"><svg fill="currentColor" viewBox="0 0 24 24"><path d="M12 12.713l-11.985-9.713h23.97l-11.985 9.713zm0 2.574l-12-9.725v15.438h24v-15.438l-12 9.725z"/></svg></a>
   </div>
 </nav>
 <!-- Hero -->
@@ -238,6 +411,77 @@ footer { position: relative; z-index: 2; text-align: center; padding: 3rem 2.5re
     <div class="item"><div class="k">Modèle</div><div class="v">Prestation B2B directe</div></div>
   </div>
 </section>
+<!-- Catalogue de formation -->
+<section id="catalogue" class="section">
+  <div class="reveal">
+    <p class="kicker">// Catalogue</p>
+    <h2>Le catalogue de formation</h2>
+    <p class="lead">Sept modules indépendants, combinables en parcours. Chacun se termine par quelque chose d&rsquo;utilisable dès le lendemain — pas par un support qu&rsquo;on range dans un tiroir. La fiche détaillée de chaque module est téléchargeable.</p>
+  </div>
+
+  <div class="modules">
+    <article class="mod reveal">
+      <div class="mod-tete"><span class="mod-num">01</span><span class="mod-duree">5 heures</span></div>
+      <h3>Le prompt engineering</h3>
+      <p class="acc">Parler juste à une intelligence artificielle — et obtenir un résultat exploitable du premier coup.</p>
+      <p class="livrable"><b>Vous repartez avec</b>Une bibliothèque de dix instructions opérationnelles, écrites pour votre activité et testées ensemble.</p>
+      <a class="fiche" href="/documents/catalogue-formation/DIAS-Module-01-Prompt-engineering.pdf" download aria-label="Télécharger la fiche du module 01 — Le prompt engineering, PDF, 2 pages">Télécharger la fiche (PDF)</a>
+    </article>
+
+    <article class="mod reveal">
+      <div class="mod-tete"><span class="mod-num">02</span><span class="mod-duree">1 jour ou 2 demi-journées</span></div>
+      <h3>L&rsquo;IA au quotidien</h3>
+      <p class="acc">Gagner du temps sans se tromper, sur les tâches que vous faites déjà.</p>
+      <p class="livrable"><b>Vous repartez avec</b>Trois usages testés sur votre poste, prêts à resservir dès le lendemain.</p>
+      <a class="fiche" href="/documents/catalogue-formation/DIAS-Module-02-IA-au-quotidien.pdf" download aria-label="Télécharger la fiche du module 02 — L'IA au quotidien, PDF, 2 pages">Télécharger la fiche (PDF)</a>
+    </article>
+
+    <article class="mod reveal">
+      <div class="mod-tete"><span class="mod-num">03</span><span class="mod-duree">1 jour</span></div>
+      <h3>Automatiser ses tâches répétitives</h3>
+      <p class="acc">Sans être technicien, et sans écrire une ligne de code.</p>
+      <p class="livrable"><b>Vous repartez avec</b>Une automatisation qui tourne sur votre activité, construite en séance.</p>
+      <a class="fiche" href="/documents/catalogue-formation/DIAS-Module-03-Automatiser-ses-taches.pdf" download aria-label="Télécharger la fiche du module 03 — Automatiser ses tâches répétitives, PDF, 2 pages">Télécharger la fiche (PDF)</a>
+    </article>
+
+    <article class="mod reveal">
+      <div class="mod-tete"><span class="mod-num">04</span><span class="mod-duree">5 heures</span></div>
+      <h3>La structure des outils digitaux</h3>
+      <p class="acc">Comprendre comment c&rsquo;est fait, avant de décider quoi construire.</p>
+      <p class="livrable"><b>Vous repartez avec</b>Une automatisation fonctionnelle que vous savez modifier vous-même.</p>
+      <a class="fiche" href="/documents/catalogue-formation/DIAS-Module-04-Structure-des-outils-digitaux.pdf" download aria-label="Télécharger la fiche du module 04 — La structure des outils digitaux, PDF, 2 pages">Télécharger la fiche (PDF)</a>
+    </article>
+
+    <article class="mod reveal">
+      <div class="mod-tete"><span class="mod-num">05</span><span class="mod-duree">5 heures</span></div>
+      <h3>Organiser son travail avec l&rsquo;IA</h3>
+      <p class="acc">Configurer, structurer, capitaliser. La plupart des utilisateurs d&rsquo;IA n&rsquo;ont jamais configuré leur outil : ils repartent d&rsquo;une page blanche à chaque fois. Le problème n&rsquo;est presque jamais l&rsquo;outil.</p>
+      <p class="livrable"><b>Vous repartez avec</b>Votre environnement de travail IA configuré de bout en bout : prompt système rédigé, espaces de projet créés, arborescence de stockage et règle de nommage en place.</p>
+      <a class="fiche" href="/documents/catalogue-formation/DIAS-Module-Organiser-son-travail-avec-l-IA.pdf" download aria-label="Télécharger la fiche du module 05 — Organiser son travail avec l'IA, PDF, 2 pages">Télécharger la fiche (PDF)</a>
+    </article>
+
+    <article class="mod reveal">
+      <div class="mod-tete"><span class="mod-num">06</span><span class="mod-duree">5 heures</span></div>
+      <h3>Concevoir et réaliser un projet</h3>
+      <p class="acc">De l&rsquo;idée à la mise en service, sans dépendre de personne.</p>
+      <p class="livrable"><b>Vous repartez avec</b>Un projet personnel conçu, réalisé et mis en service pendant le parcours.</p>
+      <a class="fiche" href="/documents/catalogue-formation/DIAS-Module-06-Concevoir-et-realiser-un-projet.pdf" download aria-label="Télécharger la fiche du module 06 — Concevoir et réaliser un projet, PDF, 2 pages">Télécharger la fiche (PDF)</a>
+    </article>
+
+    <article class="mod reveal">
+      <div class="mod-tete"><span class="mod-num">07</span><span class="mod-duree">demi-journée</span></div>
+      <h3>IA et conformité</h3>
+      <p class="acc">Cadrer les usages dans votre entreprise, avant que quelqu&rsquo;un ne le fasse à votre place.</p>
+      <p class="livrable"><b>Vous repartez avec</b>Une trame de charte d&rsquo;usage interne, à adapter et diffuser à vos équipes.</p>
+      <a class="fiche" href="/documents/catalogue-formation/DIAS-Module-07-IA-et-conformite.pdf" download aria-label="Télécharger la fiche du module 07 — IA et conformité, PDF, 2 pages">Télécharger la fiche (PDF)</a>
+    </article>
+  </div>
+
+  <div class="reveal" style="margin-top:2.5rem">
+    <a class="cta-btn" href="https://digijohnia.solutions/formation">Voir les tarifs et les parcours <span>&rarr;</span></a>
+  </div>
+</section>
+
 <!-- Contact -->
 <section id="contact" class="section">
   <div class="reveal">
@@ -246,15 +490,17 @@ footer { position: relative; z-index: 2; text-align: center; padding: 3rem 2.5re
     <p class="lead">Pas de formulaire à remplir. Un vrai échange avec John, dans les 24h. Relation directe, sans intermédiaire.</p>
     <div class="contact-actions">
       <a class="contact-btn" href="tel:0761238522"><svg fill="currentColor" viewBox="0 0 24 24"><path d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z"/></svg>07 61 23 85 22</a>
-      <a class="contact-btn" href="mailto:johntapioka@gmail.com"><svg fill="currentColor" viewBox="0 0 24 24"><path d="M12 12.713l-11.985-9.713h23.97l-11.985 9.713zm0 2.574l-12-9.725v15.438h24v-15.438l-12 9.725z"/></svg>johntapioka@gmail.com</a>
+      <a class="contact-btn" href="mailto:contact@digijohnia.solutions"><svg fill="currentColor" viewBox="0 0 24 24"><path d="M12 12.713l-11.985-9.713h23.97l-11.985 9.713zm0 2.574l-12-9.725v15.438h24v-15.438l-12 9.725z"/></svg>contact@digijohnia.solutions</a>
       <a class="contact-btn" href="https://www.linkedin.com/in/john-dimosi-b89966312" target="_blank" rel="noopener"><svg fill="currentColor" viewBox="0 0 24 24"><path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/></svg>LinkedIn — John DIMOSI</a>
     </div>
   </div>
 </section>
 <footer>
-  DIAS — Digijohn IA Solutions · John DIMOSI · Partout en France<br/>
-  Prestation de services · Devis sur mesure · Contrat · Facture — Relation directe, sans intermédiaire<br/>
-  © 2026 DIAS — Digijohn IA Solutions · SIRET 524 924 198 00038
+  <strong>DIAS — Digijohn IA Solutions</strong> · John DIMOSI, fondateur<br/>
+  20 rue Séguier, 24000 Périgueux · <a href="tel:+33761238522">07 61 23 85 22</a> · <a href="mailto:contact@digijohnia.solutions">contact@digijohnia.solutions</a><br/>
+  <a href="https://digijohnia.solutions/mentions-legales">Mentions légales</a> · <a href="https://digijohnia.solutions/politique-confidentialite">Politique de confidentialité</a> · <a href="https://digijohnia.solutions/tarifs">Tarifs</a><br/>
+  SIRET 524 924 198 00038 — TVA non applicable, art. 293 B du CGI<br/>
+  © 2026 DIAS · Digijohn IA Solutions
 </footer>
 <!-- Three.js + arrière-plan 3D logo -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
