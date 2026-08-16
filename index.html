@@ -10,13 +10,13 @@
 <meta property="og:site_name" content="DIAS — Digijohn IA Solutions" />
 <meta property="og:title" content="DIAS — John DIMOSI | Consultant IA &amp; Formateur" />
 <meta property="og:description" content="J'accompagne les PME et organismes de formation à intégrer l'IA concrètement — sans jargon, avec des résultats mesurables. Diagnostic offert." />
-<meta property="og:image" content="https://digijohnia.solutions/og-image.jpg" />
+<meta property="og:image" content="https://digijohnia-tools.netlify.app/og-image.jpg" />
 <meta property="og:url" content="https://digijohnia.solutions" />
 <meta property="og:locale" content="fr_FR" />
 <meta name="twitter:card" content="summary_large_image" />
 <meta name="twitter:title" content="DIAS — John DIMOSI | Consultant IA &amp; Formateur" />
 <meta name="twitter:description" content="Intégration de l'IA pour PME et organismes de formation. Tout en français, sans jargon. Diagnostic offert." />
-<meta name="twitter:image" content="https://digijohnia.solutions/og-image.jpg" />
+<meta name="twitter:image" content="https://digijohnia-tools.netlify.app/og-image.jpg" />
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 <!-- Feuille de fontes non bloquante : le texte peint immédiatement en police
@@ -191,6 +191,15 @@ footer { position: relative; z-index: 2; text-align: center; padding: 3rem 2.5re
   .kicker { color: var(--dias-cuivre-clair) !important; }
   .lead, .step p, .card p { color: var(--dias-texte-doux); }
 
+  /* Reliquats bleus (#2C5C88) du template d'origine non couverts par la
+     première passe de charte : tout passe au cuivre. */
+  #hero h1 .underlined .line { background: var(--dias-cuivre); }
+  #hero .code-box .prompt { color: var(--dias-cuivre-clair); }
+  .card .tag { color: var(--dias-cuivre-clair); }
+  .step .num { color: var(--dias-cuivre-clair); }
+  .contact-btn svg { color: var(--dias-cuivre-clair); }
+  .contact-btn:hover { background: rgba(184, 115, 51, 0.12); }
+
   .cta-btn,
   .contact-btn {
     border-color: rgba(184, 115, 51, 0.5) !important;
@@ -308,7 +317,7 @@ footer { position: relative; z-index: 2; text-align: center; padding: 3rem 2.5re
     <div class="nav-links">
       <a href="#expertise">Expertise</a>
       <a href="#catalogue">Catalogue</a>
-      <a href="/outils/">Diagnostic</a>
+      <a href="/outils/">Outils clients</a>
       <a href="https://digijohnia.solutions/realisations">Réalisations</a>
       <a href="https://digijohnia.solutions/tarifs">Tarifs</a>
       <a href="#contact">Contact</a>
@@ -507,7 +516,7 @@ footer { position: relative; z-index: 2; text-align: center; padding: 3rem 2.5re
 </footer>
 <!-- Three.js + arrière-plan 3D logo — différés : décor, jamais prioritaire
      sur le premier rendu (defer préserve l'ordre three → bg3d). -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js" defer></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js" integrity="sha384-CI3ELBVUz9XQO+97x6nwMDPosPR5XvsxW2ua7N1Xeygeh1IxtgqtCkGfQY9WWdHu" crossorigin="anonymous" defer></script>
 <script src="/bg3d.js" defer></script>
 <script>
 (function() {
