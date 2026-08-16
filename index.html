@@ -19,7 +19,10 @@
 <meta name="twitter:image" content="https://digijohnia.solutions/og-image.jpg" />
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600&family=Figtree:wght@400;500;600;700&display=swap" rel="stylesheet" />
+<!-- Feuille de fontes non bloquante : le texte peint immédiatement en police
+     système puis bascule (display=swap) — le FCP ne doit pas attendre Google Fonts. -->
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600&family=Figtree:wght@400;500;600;700&display=swap" rel="stylesheet" media="print" onload="this.media='all'" />
+<noscript><link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600&family=Figtree:wght@400;500;600;700&display=swap" rel="stylesheet" /></noscript>
 <style>
 *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
 html { scroll-behavior: smooth; }
@@ -98,7 +101,7 @@ nav .social svg { width: 1.25rem; height: 1.25rem; }
 /* Steps */
 .steps { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1.5rem; margin-top: 3rem; }
 .step .num { font-size: 2rem; font-weight: 700; color: #2C5C88; line-height: 1; margin-bottom: 0.75rem; }
-.step h4 { font-size: 1.05rem; font-weight: 600; margin-bottom: 0.5rem; }
+.step h3 { font-size: 1.05rem; font-weight: 600; margin-bottom: 0.5rem; }
 .step p { color: #d1d5db; font-size: 0.85rem; line-height: 1.55; }
 /* Spec box */
 .spec { margin-top: 3rem; border: 1px solid rgba(255,255,255,0.1); border-radius: 1rem; padding: 1.75rem; background: rgba(255,255,255,0.03); display: grid; grid-template-columns: repeat(5, 1fr); gap: 1.25rem; }
@@ -384,22 +387,22 @@ footer { position: relative; z-index: 2; text-align: center; padding: 3rem 2.5re
   <div class="steps">
     <div class="step reveal">
       <div class="num">1</div>
-      <h4>Contact direct</h4>
+      <h3>Contact direct</h3>
       <p>Un échange de 15 min pour vérifier si votre contexte correspond. Par téléphone ou en visio.</p>
     </div>
     <div class="step reveal">
       <div class="num">2</div>
-      <h4>Cadrage en direct</h4>
+      <h3>Cadrage en direct</h3>
       <p>Un échange de vive voix avec la direction pédagogique pour cadrer les filières et co-définir le module.</p>
     </div>
     <div class="step reveal">
       <div class="num">3</div>
-      <h4>Co-construction</h4>
+      <h3>Co-construction</h3>
       <p>3 semaines de préparation. Le contenu sort de votre réalité terrain, pas d'un catalogue.</p>
     </div>
     <div class="step reveal">
       <div class="num">4</div>
-      <h4>Formation &amp; suivi</h4>
+      <h3>Formation &amp; suivi</h3>
       <p>Sessions de vive voix, bilan à chaud et à froid, ajustements pour la session suivante.</p>
     </div>
   </div>
@@ -502,9 +505,10 @@ footer { position: relative; z-index: 2; text-align: center; padding: 3rem 2.5re
   SIRET 524 924 198 00038 — TVA non applicable, art. 293 B du CGI<br/>
   © 2026 DIAS · Digijohn IA Solutions
 </footer>
-<!-- Three.js + arrière-plan 3D logo -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
-<script src="/bg3d.js"></script>
+<!-- Three.js + arrière-plan 3D logo — différés : décor, jamais prioritaire
+     sur le premier rendu (defer préserve l'ordre three → bg3d). -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js" defer></script>
+<script src="/bg3d.js" defer></script>
 <script>
 (function() {
   // Hero fade au scroll
