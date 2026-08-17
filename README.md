@@ -1,6 +1,6 @@
 # digijohnia-tools — Repo GitHub DIAS
 
-Ce dépôt contient tous les outils HTML de Digijohn AI Solutions.
+Ce dépôt contient tous les outils HTML de Digijohn IA Solutions.
 Chaque push sur `main` déclenche un déploiement automatique sur **digijohnia.solutions** via Netlify.
 
 ## Structure

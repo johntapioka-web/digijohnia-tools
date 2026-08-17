@@ -3,8 +3,8 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>DIAS — L'IA au service des entreprises françaises | Digijohn AI Solutions</title>
-<meta name="description" content="DIAS — Digijohn AI Solutions : conseil, déploiement et formation en intelligence artificielle pour TPE, PME, professions libérales et indépendants. Partout en France, sans jargon, conforme RGPD. Diagnostic IA offert." />
+<title>DIAS — L'IA au service des entreprises françaises | Digijohn IA Solutions</title>
+<meta name="description" content="DIAS — Digijohn IA Solutions : conseil, déploiement et formation en intelligence artificielle pour TPE, PME, professions libérales et indépendants. Partout en France, sans jargon, conforme RGPD. Diagnostic IA offert." />
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
@@ -113,9 +113,24 @@ nav .social svg { width: 1.25rem; height: 1.25rem; }
   #fixed-cards .card p { font-size: 0.75rem; line-height: 1.4; }
   #section-three { padding-bottom: 5rem; }
 }
+/* Navigation mobile accessible : le menu se replie derrière un bouton (WCAG 1.4.10). */
+.nav-burger { display: none; align-items: center; justify-content: center; width: 42px; height: 42px; background: none; border: 1px solid rgba(255,255,255,0.25); border-radius: 8px; color: #fff; font-size: 1.25rem; cursor: pointer; }
+@media (max-width: 768px) {
+  .nav-burger { display: inline-flex; }
+  nav .nav-links.ouvert { display: flex; flex-direction: column; gap: 1.1rem; position: absolute; top: 100%; left: 0; right: 0; padding: 1.25rem 1.5rem 1.5rem; background: rgba(1,1,1,0.96); border-bottom: 1px solid rgba(255,255,255,0.15); }
+}
+/* Lien d'évitement (WCAG 2.4.1). */
+.skip-link { position: absolute; left: -9999px; top: 0; z-index: 100; padding: 0.6rem 1.1rem; background: #fff; color: #010101; font-weight: 600; border-radius: 0 0 8px 0; }
+.skip-link:focus { left: 0; }
+/* Préférence de mouvement réduite (WCAG 2.2.2). */
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  #hero .bounce-arrow svg { animation: none; }
+}
 </style>
 </head>
 <body>
+<a class="skip-link" href="#content">Aller au contenu</a>
 <!-- Fond 3D (logo DIAS) — injecté par bg3d.js -->
 <!-- Fixed Cards -->
 <div id="fixed-cards">
@@ -146,19 +161,20 @@ nav .social svg { width: 1.25rem; height: 1.25rem; }
 <nav>
   <div style="display:flex;align-items:center;gap:2rem;">
     <span class="logo">DIAS</span>
-    <div class="nav-links">
-      <a href="https://digijohnia.solutions/#expertise">Solutions</a>
-      <a href="https://digijohnia.solutions/#formation">Formation</a>
-      <a href="https://digijohnia.solutions/#contact">Contact</a>
+    <div class="nav-links" id="nav-liens">
+      <a href="https://digijohnia.solutions/#offres">Solutions</a>
+      <a href="https://digijohnia.solutions/formation">Formation</a>
+      <a href="https://digijohnia.solutions/contact">Contact</a>
     </div>
   </div>
   <div class="social">
     <a href="https://www.linkedin.com/in/john-dimosi-b89966312" target="_blank" rel="noopener" aria-label="LinkedIn"><svg fill="currentColor" viewBox="0 0 24 24"><path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/></svg></a>
-    <a href="mailto:johntapioka@gmail.com" aria-label="Email"><svg fill="currentColor" viewBox="0 0 24 24"><path d="M12 12.713l-11.985-9.713h23.97l-11.985 9.713zm0 2.574l-12-9.725v15.438h24v-15.438l-12 9.725z"/></svg></a>
+    <a href="mailto:contact@digijohnia.solutions" aria-label="Email"><svg fill="currentColor" viewBox="0 0 24 24"><path d="M12 12.713l-11.985-9.713h23.97l-11.985 9.713zm0 2.574l-12-9.725v15.438h24v-15.438l-12 9.725z"/></svg></a>
   </div>
+  <button class="nav-burger" type="button" aria-expanded="false" aria-controls="nav-liens" aria-label="Ouvrir ou fermer le menu">☰</button>
 </nav>
 <!-- Main Content -->
-<div id="content">
+<main id="content">
   <!-- Section 1: Hero -->
   <section id="hero">
     <div class="gradient-overlay"></div>
@@ -173,7 +189,7 @@ nav .social svg { width: 1.25rem; height: 1.25rem; }
           <span class="prompt">&gt;</span>
           <code>Conseil · Déploiement · Formation · RGPD</code>
         </div>
-        <a href="https://digijohnia.solutions/#contact" class="cta-btn">Diagnostic IA offert <span>&rarr;</span></a>
+        <a href="https://digijohnia.solutions/contact" class="cta-btn">Diagnostic IA offert <span>&rarr;</span></a>
       </div>
     </div>
     <div class="bounce-arrow">
@@ -193,9 +209,9 @@ nav .social svg { width: 1.25rem; height: 1.25rem; }
       <h2>DIAS</h2>
     </div>
   </section>
-</div>
+</main>
 <!-- Three.js + arrière-plan 3D logo -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js" integrity="sha384-CI3ELBVUz9XQO+97x6nwMDPosPR5XvsxW2ua7N1Xeygeh1IxtgqtCkGfQY9WWdHu" crossorigin="anonymous"></script>
 <script src="/bg3d.js"></script>
 <script>
 (function() {
@@ -247,6 +263,28 @@ nav .social svg { width: 1.25rem; height: 1.25rem; }
     }
   }, { threshold: 0.15 });
   observer.observe(sectionThreeInner);
+})();
+</script>
+<script>
+(function () {
+  // Menu mobile : bouton aria-expanded, fermeture sur Échap et au clic d'un lien.
+  var burger = document.querySelector('.nav-burger');
+  var liens = document.getElementById('nav-liens');
+  if (!burger || !liens) return;
+  function fermer() {
+    liens.classList.remove('ouvert');
+    burger.setAttribute('aria-expanded', 'false');
+  }
+  burger.addEventListener('click', function () {
+    var ouvert = liens.classList.toggle('ouvert');
+    burger.setAttribute('aria-expanded', ouvert ? 'true' : 'false');
+  });
+  document.addEventListener('keydown', function (e) {
+    if (e.key === 'Escape' && liens.classList.contains('ouvert')) { fermer(); burger.focus(); }
+  });
+  liens.addEventListener('click', function (e) {
+    if (e.target.closest('a')) fermer();
+  });
 })();
 </script>
 </body>
