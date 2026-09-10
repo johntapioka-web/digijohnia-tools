@@ -1,0 +1,9 @@
+// Déploiement Cloudflare — diagnostic.digijohnia.solutions (Phase 4).
+// Déployer : npx wrangler deploy --autoconfig false
+{
+  "name": "dias-diagnostic",
+  "compatibility_date": "2026-09-10",
+  "assets": { "directory": "." },
+  "workers_dev": true,
+  "routes": [{ "pattern": "diagnostic.digijohnia.solutions", "custom_domain": true }]
+}
