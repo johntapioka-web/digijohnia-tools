@@ -7,3 +7,10 @@
 wrangler.jsonc
 node_modules
 
+
+# .wrangler est créé par wrangler DANS le dossier du projet au déploiement,
+# et contient wrangler-account.json : identifiant de compte Cloudflare et
+# adresse e-mail du titulaire. Il était servi publiquement sur les quatre
+# démos jusqu'au 10/09/2026 — l'oubli le plus coûteux du premier filtre.
+.wrangler
+.wrangler/**
