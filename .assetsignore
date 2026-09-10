@@ -1,0 +1,9 @@
+# Ce qui ne doit JAMAIS être servi publiquement.
+# Cloudflare sert TOUT le dossier d'assets : ce filtre est la seule barrière.
+# Le 10/09/2026, un dépôt privé a vu son .git exposé faute de ce fichier.
+.git
+.git/**
+.gitignore
+wrangler.jsonc
+node_modules
+

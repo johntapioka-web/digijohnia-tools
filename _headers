@@ -1,0 +1,12 @@
+# En-têtes de sécurité (audit du 10/09/2026).
+# Ces démos les avaient perdus en quittant Netlify : elles étaient servies
+# sans aucune protection contre le clickjacking, le sniffing de type MIME
+# ni la fuite de référent.
+
+/*
+  X-Frame-Options: DENY
+  X-Content-Type-Options: nosniff
+  Referrer-Policy: strict-origin-when-cross-origin
+  Strict-Transport-Security: max-age=31536000; includeSubDomains
+  Permissions-Policy: camera=(), microphone=(), geolocation=()
+
